@@ -7,7 +7,7 @@ This app lets you monitor your music training over time. Choose which day, durat
 ### Link to the deployed project
   [Deployed Project]()
 ### Link to your project board
-  [Project Board]()
+  [Project Board](https://github.com/GonzalesMatthew/CAPSTONE-matts-music-monitor/projects/1)
 ### Description of the user
   For musicians looking for a virtual training log
 ### List of features                                                
@@ -27,5 +27,7 @@ This app lets you monitor your music training over time. Choose which day, durat
 ### Link to Loom video walkthrough of your app
 [App-Walkthrough Video]()
 
+### Link to my personal bio site
+[Personal Bio Site](www.matthewggonzales.com)
 ### Steps to Deploy
 - [Steps to deploy](https://github.com/nss-nightclass-projects/REACT-Deployment-Netlify)
