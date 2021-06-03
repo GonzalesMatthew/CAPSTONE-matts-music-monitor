@@ -1,9 +1,9 @@
 # Matt's Music Monitor App
-This app lets you monitor your music training. Choose which day, duration, instrument, key/scale used, and leave a desription and review notes of your training session for review.
+This app lets you monitor your music training over time. Choose which day, duration, instrument, key/scale used, and leave a desription and review notes of your training session for review, and more.
 ### Link to ERD
   [ERD](https://dbdiagram.io/d/604d0f78fcdcb6230b240157)
 ### Link to your wireframes/prototype
-  [Wireframe](https://www.figma.com/file/fgmKnToAG9vPIJkxl7Ikf5/Untitled?node-id=0%3A1)
+  [Wireframe](https://www.figma.com/file/ISJ4a8Mfql6TLwYahDhUDG/CAPSTONE-Matt-s-Music-Monitor?node-id=2%3A13)
 ### Link to the deployed project
   [Deployed Project]()
 ### Link to your project board
