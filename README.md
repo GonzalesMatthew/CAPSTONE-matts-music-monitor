@@ -28,6 +28,6 @@ This app lets you monitor your music training over time. Choose which day, durat
 [App-Walkthrough Video]()
 
 ### Link to my personal bio site
-[Personal Bio Site](www.matthewggonzales.com)
+[Personal Bio Site](https://www.matthewggonzales.com)
 ### Steps to Deploy
 - [Steps to deploy](https://github.com/nss-nightclass-projects/REACT-Deployment-Netlify)
