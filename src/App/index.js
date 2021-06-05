@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import firebaseConfig from '../helpers/apiKeys';
 import Routes from '../helpers/Routes';
@@ -14,12 +14,10 @@ function App() {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
       if (authed) {
-        // something to happen
         const userInfoObj = {
           fullName: authed.displayName,
           profileImage: authed.photoURL,
-          uid: authed.uid,
-          user: authed.email.split('@')[0]
+          uid: authed.uid
         };
         setUser(userInfoObj);
       } else if (user || user === null) {
