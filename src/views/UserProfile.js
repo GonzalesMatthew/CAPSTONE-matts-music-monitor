@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {
   makeStyles, Avatar, Paper, Typography, Container
@@ -16,15 +17,23 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     margin: 'auto',
     maxWidth: 500,
+    backgroundColor: '#D1CBC1',
+    // color: '#C9D1D9'
   },
 }));
+
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export default function UserProfile({ user }) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <Container>
-        <Paper>
+        <Paper className={classes.paper} elevation={6}>
           <div className='d-flex flex-row'>
             <div>
               <Avatar
@@ -34,16 +43,16 @@ export default function UserProfile({ user }) {
               />
             </div>
             <div className='d-flex flex-column'>
-              <div>
+              <Div>
                 <Typography gutterBottom variant='subtitle1'>
                   Welcome, {user.fullName}...
                 </Typography>
-              </div>
-              <div>
+              </Div>
+              <Div>
                 <Button color='dark'>
                   addTask...
                 </Button>
-              </div>
+              </Div>
             </div>
           </div>
         </Paper>
