@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, Container, Paper } from '@material-ui/core';
 import Task from './Task';
-// import { Button } from 'reactstrap';
-// import images from '../helpers/images/images';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TaskWindow({ tasks }) {
   const classes = useStyles();
+
   return (
     <Container>
       <Paper className={classes.paper} elevation={6}>

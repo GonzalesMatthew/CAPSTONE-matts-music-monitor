@@ -1,8 +1,10 @@
-import React from 'react';
+// import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, Container } from '@material-ui/core';
 import { Button } from 'reactstrap';
 import images from '../helpers/images/images';
+import getTopic from '../helpers/data/TopicData';
 
 const useStyles = makeStyles(() => ({
   task: {
@@ -11,14 +13,20 @@ const useStyles = makeStyles(() => ({
 }));
 export default function Task({ ...rest }) {
   const classes = useStyles();
+  const [topic, setTopic] = useState([]);
+  const [subTopic, setSubTopic] = useState([]);
+  useEffect(() => {
+    getTopic(rest.topicId).then(setTopic);
+    getTopic(rest.subTopicId).then(setSubTopic);
+  }, []);
   return (
     <Container className={classes.task}>
       <div className='d-flex flex-row'>
         <Button color='dark'>
-          {rest.topicId} {rest.subTopicId}
+          {topic.topic}: {subTopic.topic}
         </Button>
         <Button color='dark'>
-          {rest.instrumentId}
+          {/* {rest.instrumentId} */}
         </Button>
         <Button color='dark'><img alt='view button' src={images.eyeIcon}/></Button>
         <Button color='dark'><img alt='delete button' src={images.xIcon}/></Button>
@@ -28,12 +36,13 @@ export default function Task({ ...rest }) {
 }
 
 Task.propTypes = {
-  description: PropTypes.description,
-  duration: PropTypes.duration,
-  firebaseKey: PropTypes.firebaseKey,
-  instrumentId: PropTypes.instrumentId,
-  reviewNotes: PropTypes.reviewNotes,
-  subTopicId: PropTypes.subTopicId,
-  topicId: PropTypes.topicId,
-  uid: PropTypes.uid,
+  day: PropTypes.string,
+  description: PropTypes.string,
+  duration: PropTypes.number,
+  firebaseKey: PropTypes.string,
+  instrumentId: PropTypes.string,
+  reviewNotes: PropTypes.string,
+  subTopicId: PropTypes.string,
+  topicId: PropTypes.string,
+  uid: PropTypes.any,
 };
