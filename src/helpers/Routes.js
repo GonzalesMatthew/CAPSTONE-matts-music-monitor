@@ -5,12 +5,13 @@ import Home from '../views/Home';
 import NotFound from '../views/NotFound';
 import UserProfile from '../views/UserProfile';
 
-export default function Routes({ user }) {
+export default function Routes({ user, tasks }) {
   return (
     <div>
       <Switch>
         { user
-          ? <Route exact path='/user' component={() => <UserProfile user={user}/>} />
+          ? <Route exact path='/user' component={() => <UserProfile
+            user={user} tasks={tasks}/>} />
           : <Route exact path='/' component={Home} />
         }
         <Route path='*' component = {NotFound} />
@@ -20,5 +21,6 @@ export default function Routes({ user }) {
 }
 
 Routes.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  tasks: PropTypes.array
 };
