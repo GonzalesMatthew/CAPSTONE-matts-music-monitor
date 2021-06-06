@@ -10,8 +10,8 @@ import './App.scss';
 firebase.initializeApp(firebaseConfig);
 
 function App() {
-  const [user, setUser] = useState(null);
   const [tasks, setTasks] = useState([]);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
@@ -22,7 +22,7 @@ function App() {
           uid: authed.uid
         };
         setUser(userInfoObj);
-        getTasks(user.uid).then(setTasks);
+        getTasks(userInfoObj.uid).then(setTasks);
       } else if (user || user === null) {
         setUser(false);
       }

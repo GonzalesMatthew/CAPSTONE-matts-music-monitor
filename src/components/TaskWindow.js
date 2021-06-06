@@ -23,16 +23,25 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function TaskWindow() {
+export default function TaskWindow({ tasks }) {
   const classes = useStyles();
   return (
     <Container>
       <Paper className={classes.paper} elevation={6}>
-        <Task/>
-        <Task/>
-        <Task/>
-        <Task/>
-        <Task/>
+        {tasks.map((task) => (
+          <Task
+            key={task.firebaseKey}
+            day={task.day}
+            description={task.description}
+            duration={task.duration}
+            firebaseKey={task.firebaseKey}
+            instrumentId={task.instrumentId}
+            reviewNotes={task.reviewNotes}
+            subTopicId={task.subTopicId}
+            topicId={task.topicId}
+            uid={task.uid}
+          />
+        ))}
       </Paper>
     </Container>
   );
