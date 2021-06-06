@@ -5,6 +5,7 @@ import { makeStyles, Container } from '@material-ui/core';
 import { Button } from 'reactstrap';
 import images from '../helpers/images/images';
 import getTopic from '../helpers/data/TopicData';
+import getInstrument from '../helpers/data/InstrumentData';
 
 const useStyles = makeStyles(() => ({
   task: {
@@ -15,9 +16,11 @@ export default function Task({ ...rest }) {
   const classes = useStyles();
   const [topic, setTopic] = useState([]);
   const [subTopic, setSubTopic] = useState([]);
+  const [instrument, setInstrument] = useState([]);
   useEffect(() => {
     getTopic(rest.topicId).then(setTopic);
     getTopic(rest.subTopicId).then(setSubTopic);
+    getInstrument(rest.instrumentId).then(setInstrument);
   }, []);
   return (
     <Container className={classes.task}>
@@ -26,7 +29,10 @@ export default function Task({ ...rest }) {
           {topic.topic}: {subTopic.topic}
         </Button>
         <Button color='dark'>
-          {/* {rest.instrumentId} */}
+          {instrument.instrument}
+        </Button>
+        <Button color='dark'>
+          <img alt={`Icon image of ${instrument.instrument}`} src={instrument.instrumentIcon}/>
         </Button>
         <Button color='dark'><img alt='view button' src={images.eyeIcon}/></Button>
         <Button color='dark'><img alt='delete button' src={images.xIcon}/></Button>
