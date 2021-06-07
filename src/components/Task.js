@@ -10,7 +10,12 @@ import getInstrument from '../helpers/data/InstrumentData';
 const useStyles = makeStyles(() => ({
   task: {
     backgroundColor: '#343A40'
-  }
+  },
+  image: {
+    height: 25,
+    width: 25,
+    borderRadius: 50,
+  },
 }));
 export default function Task({ ...rest }) {
   const classes = useStyles();
@@ -25,14 +30,14 @@ export default function Task({ ...rest }) {
   return (
     <Container className={classes.task}>
       <div className='d-flex flex-row'>
-        <Button color='dark'>
+        <Button color='dark' className='flex-grow-1'>
           {topic.topic}: {subTopic.topic}
         </Button>
-        <Button color='dark'>
+        {/* <Button color='dark'>
           {instrument.instrument}
-        </Button>
+        </Button> */}
         <Button color='dark'>
-          <img alt={`Icon image of ${instrument.instrument}`} src={instrument.instrumentIcon}/>
+          <img className={classes.image} alt={`Icon image of ${instrument.instrument}`} src={instrument.instrumentIcon}/>
         </Button>
         <Button color='dark'><img alt='view button' src={images.eyeIcon}/></Button>
         <Button color='dark'><img alt='delete button' src={images.xIcon}/></Button>
