@@ -4,21 +4,7 @@ import {
   Button, Modal, ModalBody, ModalFooter, ModalHeader
 } from 'reactstrap';
 
-const ModalContainer = ({ modalStatus, setModalStatus }) => {
-  // const [nestedModal, setNestedModal] = useState(false);
-  // const [closeAll, setCloseAll] = useState(false);
-
-  const toggle = () => setModalStatus(!modalStatus);
-  // const toggleNested = () => {
-  //   setNestedModal(!nestedModal);
-  //   setCloseAll(false);
-  // };
-  // const toggleAll = () => {
-  //   setNestedModal(!nestedModal);
-  //   setCloseAll(true);
-  // };
-
-  return (
+const ModalContainer = ({ modalStatus, toggle }) => (
     <Modal isOpen={modalStatus} toggle={toggle}>
       <ModalHeader toggle={toggle}>Modal title</ModalHeader>
       <ModalBody>
@@ -39,12 +25,11 @@ const ModalContainer = ({ modalStatus, setModalStatus }) => {
         <Button color="dark" onClick={toggle}>Cancel...</Button>
       </ModalFooter>
     </Modal>
-  );
-};
+);
 
 export default ModalContainer;
 
 ModalContainer.propTypes = {
   modalStatus: PropTypes.bool,
-  setModalStatus: PropTypes.func
+  toggle: PropTypes.func
 };
