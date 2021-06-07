@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function TaskWindow({ tasks }) {
+export default function TaskWindow({ tasks, modalStatus, setModalStatus }) {
   const classes = useStyles();
 
   return (
@@ -39,6 +39,8 @@ export default function TaskWindow({ tasks }) {
             subTopicId={task.subTopicId}
             topicId={task.topicId}
             uid={task.uid}
+            modalStatus={modalStatus}
+            setModalStatus={setModalStatus}
           />
         ))}
       </Paper>
@@ -47,5 +49,7 @@ export default function TaskWindow({ tasks }) {
 }
 
 TaskWindow.propTypes = {
-  tasks: PropTypes.array
+  tasks: PropTypes.array,
+  modalStatus: PropTypes.bool,
+  setModalStatus: PropTypes.func
 };

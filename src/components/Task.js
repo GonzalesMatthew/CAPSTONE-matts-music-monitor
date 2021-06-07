@@ -56,4 +56,6 @@ Task.propTypes = {
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
   uid: PropTypes.any,
+  modalStatus: PropTypes.bool,
+  setModalStatus: PropTypes.func
 };
