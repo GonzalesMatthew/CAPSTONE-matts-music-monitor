@@ -44,7 +44,7 @@ export default function UserLanding({
               className={classes.large}
             />
           </div>
-          <div className='d-flex flex-column'>
+          <div className='d-flex flex-column flex-grow-1'>
             <Div>
               <Typography gutterBottom variant='subtitle1'>
                 Welcome, {user.fullName}...
