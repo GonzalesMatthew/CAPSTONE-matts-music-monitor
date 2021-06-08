@@ -1,103 +1,165 @@
-// import React, {
-//   useRef, useState,
-//   useEffect
-// } from 'react';
-// import { useParams } from 'react-router-dom';
-// import PropTypes from 'prop-types';
-// import {
-//   Form, FormGroup,
-//   Label, Input
+import React, {
+  useState,
+} from 'react';
+import PropTypes from 'prop-types';
+import {
+  Form, FormGroup,
+  Label, Input
+} from 'reactstrap';
 
-// } from 'reactstrap';
-// import { createChannel, getSingleChannel, updateChannel } from '../../helpers/data/channelData';
+const TaskForm = ({
+  day = '',
+  description = '',
+  duration = '',
+  firebaseKey = '',
+  instrumentId = '',
+  reviewNotes = '',
+  subTopicId = '',
+  topicId = '',
+  uid = ''
+}) => {
+  const [taskObj, setTaskObj] = useState({
+    day: day || '',
+    description: description || '',
+    duration: duration || '',
+    firebaseKey: firebaseKey || null,
+    instrumentId: instrumentId || '',
+    reviewNotes: reviewNotes || '',
+    subTopicId: subTopicId || '',
+    topicId: topicId || '',
+    uid: uid || ''
+  });
 
-// const ChannelForm = ({
-//   user,
-//   setSubmitFunc,
-//   modal,
-//   setModal,
-//   setChannelArr
-// }) => {
-//   const { firebaseKey } = useParams();
-//   const [channelObj, setChannelObj] = useState({
-//     name: '',
-//     uid: user ? user.uid : '',
-//     firebaseKey
-//   });
-//   // Display invalid status for input field if no input
-//   const [isInvalid, setIsInvalid] = useState(false);
-//   const [formPlaceholder, setFormPlaceholder] = useState('Enter channel name');
+  const handleInputChange = (e) => {
+    setTaskObj((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+    console.warn(taskObj);
+  };
 
-//   const submitRef = useRef(null);
-//   useEffect(() => {
-//     setSubmitFunc(submitRef);
-//   }, [submitRef.current]);
+  return (
+    <Form onSubmit={console.warn('submit')}>
+      <FormGroup>
+        <Label for="duration">duration...</Label>
+        <Input
+          type="number"
+          name="duration"
+          placeholder=""
+          onChange={handleInputChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label for="topicId">topic...</Label>
+        <Input
+          type="string"
+          name="topicId"
+          placeholder=""
+          onChange={handleInputChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label for="subTopicId">subTopic...</Label>
+        <Input
+          type="string"
+          name="subTopicId"
+          placeholder=""
+          onChange={handleInputChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label for="instrumentId">instrument...</Label>
+        <Input
+          type="string"
+          name="instrumentId"
+          placeholder=""
+          onChange={handleInputChange}/>
+      </FormGroup>
+      <br/>
+      <FormGroup>
+        <Label for="day">date...</Label>
+        <Input
+          type="string"
+          name="day"
+          placeholder="YYYY-MM-DDTHH:MM:SSZ"
+          onChange={handleInputChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label for="description">description...</Label>
+        <Input
+          type="string"
+          name="description"
+          placeholder=""
+          onChange={handleInputChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label for="reviewNotes">reviewNotes...</Label>
+        <Input
+          type="string"
+          name="reviewNotes"
+          placeholder=""
+          onChange={handleInputChange}/>
+      </FormGroup>
+      <Label>tascamTrack:</Label>
+      <FormGroup>
+        <Label for="memo1">memo1...</Label>
+        <Input
+          type="string"
+          name="memo1"
+          placeholder=""
+          onChange={handleInputChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label for="memoTime1">recordingTimestamp1...</Label>
+        <Input
+          type="string"
+          name="memoTime1"
+          placeholder=""
+          onChange={handleInputChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label for="memo2">memo2...</Label>
+        <Input
+          type="string"
+          name="memo2"
+          placeholder=""
+          onChange={handleInputChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label for="memoTime2">recordingTimestamp2...</Label>
+        <Input
+          type="string"
+          name="memoTime2"
+          placeholder=""
+          onChange={handleInputChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label for="memo3">memo3...</Label>
+        <Input
+          type="string"
+          name="memo3"
+          placeholder=""
+          onChange={handleInputChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label for="memoTime3">recordingTimestamp3...</Label>
+        <Input
+          type="string"
+          name="memoTime3"
+          placeholder=""
+          onChange={handleInputChange}/>
+      </FormGroup>
+    </Form>
+  );
+};
 
-//   // load channel name if we are updating
-//   useEffect(() => {
-//     if (firebaseKey) {
-//       getSingleChannel(firebaseKey).then((channel) => {
-//         if (channel) {
-//           setChannelObj({
-//             name: channel.name,
-//             uid: channel.uid,
-//             firebaseKey: channel.firebaseKey
-//           });
-//         }
-//       });
-//     }
-//   }, []);
+TaskForm.propTypes = {
+  day: PropTypes.string,
+  description: PropTypes.string,
+  duration: PropTypes.number,
+  firebaseKey: PropTypes.string,
+  instrumentId: PropTypes.string,
+  reviewNotes: PropTypes.string,
+  subTopicId: PropTypes.string,
+  topicId: PropTypes.string,
+  uid: PropTypes.string
+};
 
-//   const handleInputChange = (e) => {
-//     setChannelObj((prevState) => ({
-//       ...prevState,
-//       [e.target.name]: e.target.value,
-//     }));
-//     if (e.target.value) {
-//       // remove red invalid flag on input field
-//       setIsInvalid(false);
-//     }
-//   };
-
-//   const handleSubmit = () => {
-//     // no adding of blank names for a channel
-//     if (channelObj.name) {
-//       if (firebaseKey) {
-//         updateChannel(firebaseKey, channelObj)
-//           .then((channelArr) => setChannelArr(channelArr));
-//       } else {
-//         createChannel(channelObj).then((newChannelArr) => {
-//           setChannelArr(newChannelArr);
-//         });
-//       }
-//       setModal(!modal);
-//     } else {
-//       setFormPlaceholder('Please enter a channel name');
-//       setIsInvalid(true);
-//     }
-//   };
-//   submitRef.current = handleSubmit;
-
-//   return (
-//   <>
-//     <Form onSubmit={handleSubmit}>
-//       <FormGroup>
-//         <Label for='channelName'>Channel Name</Label>
-//         <Input type='text' name='name' placeholder={formPlaceholder}
-//           value={channelObj.name} onChange={handleInputChange}
-//           invalid={isInvalid} />
-//       </FormGroup>
-//     </Form>
-//   </>
-//   );
-// };
-
-// ChannelForm.propTypes = {
-//   user: PropTypes.any,
-//   setSubmitFunc: PropTypes.func,
-//   modal: PropTypes.bool,
-//   setModal: PropTypes.func,
-//   setChannelArr: PropTypes.func
-// };
-
-// export default ChannelForm;
+export default TaskForm;
