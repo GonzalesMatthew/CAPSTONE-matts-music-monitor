@@ -1,66 +1,26 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import {
-  makeStyles, Avatar, Paper, Typography, Container
-} from '@material-ui/core';
-import { Button } from 'reactstrap';
+import UserLanding from '../components/UserLanding';
+import TaskWindow from '../components/TaskWindow';
+import ContributionGraph from '../components/ContributionGraph';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-  },
-  large: {
-    width: theme.spacing(15),
-    height: theme.spacing(15),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    margin: 'auto',
-    maxWidth: 500,
-    backgroundColor: '#D1CBC1',
-    // color: '#C9D1D9'
-  },
-}));
-
-const Div = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export default function UserProfile({ user }) {
-  const classes = useStyles();
+export default function UserProfile({
+  user, tasks
+}) {
+  const [modalStatus, setModalStatus] = useState(false);
+  useEffect(() => {
+    setModalStatus(false);
+  }, []);
   return (
-    <div className={classes.root}>
-      <Container>
-        <Paper className={classes.paper} elevation={6}>
-          <div className='d-flex flex-row'>
-            <div>
-              <Avatar
-                alt={`image of ${user.fullName}`}
-                src={user.profileImage}
-                className={classes.large}
-              />
-            </div>
-            <div className='d-flex flex-column'>
-              <Div>
-                <Typography gutterBottom variant='subtitle1'>
-                  Welcome, {user.fullName}...
-                </Typography>
-              </Div>
-              <Div>
-                <Button color='dark'>
-                  addTask...
-                </Button>
-              </Div>
-            </div>
-          </div>
-        </Paper>
-      </Container>
-    </div>
+    <>
+      <UserLanding user={user} modalStatus={modalStatus} setModalStatus={setModalStatus}/>
+      <TaskWindow user={user} tasks={tasks} modalStatus={modalStatus} setModalStatus={setModalStatus}/>
+      <ContributionGraph user={user}/>
+    </>
   );
 }
 
 UserProfile.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  tasks: PropTypes.array,
 };
