@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { makeStyles, Container } from '@material-ui/core';
 import { Button } from 'reactstrap';
 import images from '../helpers/images/images';
-import getTopic from '../helpers/data/TopicData';
-import getInstrument from '../helpers/data/InstrumentData';
+import { getTopic } from '../helpers/data/TopicData';
+import { getInstrument } from '../helpers/data/InstrumentData';
 
 const useStyles = makeStyles(() => ({
   task: {

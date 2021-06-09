@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
@@ -6,6 +7,8 @@ import {
   Form, FormGroup,
   Label, Input
 } from 'reactstrap';
+import { getTopics } from '../../helpers/data/TopicData';
+import { getInstruments } from '../../helpers/data/InstrumentData';
 
 const TaskForm = ({
   day = '',
@@ -30,6 +33,12 @@ const TaskForm = ({
     uid: uid || ''
   });
 
+  const [topicList, setTopicList] = useState([]);
+  const [instrumentList, setInstrumentList] = useState([]);
+  useEffect(() => {
+    getTopics().then(setTopicList);
+    getInstruments().then(setInstrumentList);
+  });
   const handleInputChange = (e) => {
     setTaskObj((prevState) => ({
       ...prevState,
@@ -45,32 +54,61 @@ const TaskForm = ({
         <Input
           type="number"
           name="duration"
-          placeholder=""
+          placeholder="0"
+          min='0'
           onChange={handleInputChange}/>
       </FormGroup>
       <FormGroup>
         <Label for="topicId">topic...</Label>
         <Input
-          type="string"
+          type="select"
           name="topicId"
           placeholder=""
-          onChange={handleInputChange}/>
+          onChange={handleInputChange}
+        >
+          <option value=''>selectTopic...</option>
+          {topicList.map((topic) => (
+            <option
+              key={topic.firebaseKey}
+              value={topic.firebaseKey}
+            >{topic.topic}</option>
+          ))}
+        </Input>
       </FormGroup>
       <FormGroup>
         <Label for="subTopicId">subTopic...</Label>
         <Input
-          type="string"
+          type="select"
           name="subTopicId"
           placeholder=""
-          onChange={handleInputChange}/>
+          onChange={handleInputChange}
+        >
+          <option value=''>selectSubTopic...</option>
+          {topicList.map((topic) => (
+            <option
+              key={topic.firebaseKey}
+              value={topic.firebaseKey}>
+              {topic.topic}
+            </option>
+          ))}
+        </Input>
       </FormGroup>
       <FormGroup>
         <Label for="instrumentId">instrument...</Label>
         <Input
-          type="string"
+          type="select"
           name="instrumentId"
           placeholder=""
-          onChange={handleInputChange}/>
+          onChange={handleInputChange}
+        >
+          <option value=''>selectInstrument...</option>
+          {instrumentList.map((instrument) => (
+            <option
+              key={instrument.firebaseKey}
+              value={instrument.firebaseKey}
+            >{instrument.instrument}</option>
+          ))}
+          </Input>
       </FormGroup>
       <br/>
       <FormGroup>
