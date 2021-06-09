@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 import { getTopics } from '../../helpers/data/TopicData';
 import { getInstruments } from '../../helpers/data/InstrumentData';
+import { addTask } from '../../helpers/data/TaskData';
 
 const TaskForm = ({
   day = '',
@@ -19,8 +20,10 @@ const TaskForm = ({
   reviewNotes = '',
   subTopicId = '',
   topicId = '',
-  uid = ''
+  uid = '',
+  setTasks,
 }) => {
+  // define task object
   const [taskObj, setTaskObj] = useState({
     day: day || '',
     description: description || '',
@@ -33,12 +36,16 @@ const TaskForm = ({
     uid: uid || ''
   });
 
+  // hooks for topic and instrument data
   const [topicList, setTopicList] = useState([]);
   const [instrumentList, setInstrumentList] = useState([]);
+
   useEffect(() => {
     getTopics().then(setTopicList);
     getInstruments().then(setInstrumentList);
   });
+
+  // handle input changes
   const handleInputChange = (e) => {
     setTaskObj((prevState) => ({
       ...prevState,
@@ -47,8 +54,18 @@ const TaskForm = ({
     console.warn(taskObj);
   };
 
+  // handle submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (taskObj.firebaseKey) {
+      console.warn('update submit');
+    } else {
+      addTask(taskObj).then(setTasks);
+    }
+  };
+
   return (
-    <Form onSubmit={console.warn('submit')}>
+    <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Label for="duration">duration...</Label>
         <Input
@@ -197,7 +214,8 @@ TaskForm.propTypes = {
   reviewNotes: PropTypes.string,
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
-  uid: PropTypes.string
+  uid: PropTypes.string,
+  setTasks: PropTypes.func,
 };
 
 export default TaskForm;

@@ -6,7 +6,7 @@ import NotFound from '../views/NotFound';
 import UserProfile from '../views/UserProfile';
 
 export default function Routes({
-  user, tasks
+  user, tasks, setTasks
 }) {
   return (
     <div>
@@ -15,6 +15,7 @@ export default function Routes({
           ? <Route exact path='/user' component={() => <UserProfile
             user={user}
             tasks={tasks}
+            setTasks={setTasks}
             />} />
           : <Route exact path='/' component={Home} />
         }
@@ -27,4 +28,5 @@ export default function Routes({
 Routes.propTypes = {
   user: PropTypes.any,
   tasks: PropTypes.array,
+  setTasks: PropTypes.func,
 };

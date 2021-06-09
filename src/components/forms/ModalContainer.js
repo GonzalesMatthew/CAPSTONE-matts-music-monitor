@@ -13,7 +13,9 @@ import TaskForm from './TaskForm';
 //   }
 // }));
 
-const ModalContainer = ({ formName, modalStatus, toggle }) => (
+const ModalContainer = ({
+  formName, modalStatus, toggle, setTasks
+}) => (
   // const classes = useStyles();
     <Modal
       // dialogClassName={classes.modal}
@@ -22,7 +24,9 @@ const ModalContainer = ({ formName, modalStatus, toggle }) => (
     >
       <ModalHeader toggle={toggle}>{formName}</ModalHeader>
       <ModalBody>
-        <TaskForm/>
+        <TaskForm
+          setTasks={setTasks}
+        />
         <br />
         {/* <Button color="success" onClick={toggleNested}>Show Nested Modal</Button> */}
         {/* <Modal isOpen={nestedModal} toggle={toggleNested} onClosed={closeAll ? toggle : undefined}>
@@ -46,5 +50,6 @@ export default ModalContainer;
 ModalContainer.propTypes = {
   formName: PropTypes.string,
   modalStatus: PropTypes.bool,
-  toggle: PropTypes.func
+  toggle: PropTypes.func,
+  setTasks: PropTypes.func
 };

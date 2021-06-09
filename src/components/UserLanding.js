@@ -29,7 +29,7 @@ const Div = styled.div`
   align-items: center;
 `;
 export default function UserLanding({
-  user, modalStatus, setModalStatus
+  user, modalStatus, setModalStatus, setTasks
 }) {
   const classes = useStyles();
   const toggle = () => setModalStatus(!modalStatus);
@@ -54,7 +54,7 @@ export default function UserLanding({
               <Button color='dark' onClick={toggle}>
                 addTask...
               </Button>
-              <ModalContainer formName={'addTask...'} modalStatus={modalStatus} toggle={toggle}/>
+              <ModalContainer formName={'addTask...'} setTasks={setTasks} modalStatus={modalStatus} toggle={toggle}/>
             </Div>
           </div>
         </div>
@@ -66,5 +66,6 @@ export default function UserLanding({
 UserLanding.propTypes = {
   user: PropTypes.any.isRequired,
   modalStatus: PropTypes.bool,
-  setModalStatus: PropTypes.func
+  setModalStatus: PropTypes.func,
+  setTasks: PropTypes.func
 };
