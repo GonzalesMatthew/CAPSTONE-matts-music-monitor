@@ -54,7 +54,7 @@ export default function UserLanding({
               <Button color='dark' onClick={toggle}>
                 addTask...
               </Button>
-              <ModalContainer formName={'addTask...'} setTasks={setTasks} modalStatus={modalStatus} toggle={toggle}/>
+              <ModalContainer user={user} formName={'addTask...'} setTasks={setTasks} modalStatus={modalStatus} toggle={toggle}/>
             </Div>
           </div>
         </div>

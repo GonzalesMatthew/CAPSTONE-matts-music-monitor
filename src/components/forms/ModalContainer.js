@@ -14,7 +14,7 @@ import TaskForm from './TaskForm';
 // }));
 
 const ModalContainer = ({
-  formName, modalStatus, toggle, setTasks
+  formName, modalStatus, toggle, setTasks, user
 }) => (
   // const classes = useStyles();
     <Modal
@@ -25,6 +25,7 @@ const ModalContainer = ({
       <ModalHeader toggle={toggle}>{formName}</ModalHeader>
       <ModalBody>
         <TaskForm
+          user={user}
           setTasks={setTasks}
         />
         <br />
@@ -51,5 +52,6 @@ ModalContainer.propTypes = {
   formName: PropTypes.string,
   modalStatus: PropTypes.bool,
   toggle: PropTypes.func,
-  setTasks: PropTypes.func
+  setTasks: PropTypes.func,
+  user: PropTypes.any
 };

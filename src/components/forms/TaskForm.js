@@ -12,6 +12,7 @@ import { getInstruments } from '../../helpers/data/InstrumentData';
 import { addTask } from '../../helpers/data/TaskData';
 
 const TaskForm = ({
+  user,
   day,
   description,
   duration,
@@ -20,7 +21,6 @@ const TaskForm = ({
   reviewNotes,
   subTopicId,
   topicId,
-  uid,
   setTasks,
 }) => {
   // define task object
@@ -33,15 +33,21 @@ const TaskForm = ({
     reviewNotes: reviewNotes || '',
     subTopicId: subTopicId || '',
     topicId: topicId || '',
-    uid: uid || ''
+    uid: user.uid || ''
   });
 
   // hooks for topic and instrument data
   const [topicList, setTopicList] = useState([]);
+  const [subTopicList, setSubTopicList] = useState([]);
   const [instrumentList, setInstrumentList] = useState([]);
 
   useEffect(() => {
     getTopics().then(setTopicList);
+  });
+  useEffect(() => {
+    getTopics().then(setSubTopicList);
+  });
+  useEffect(() => {
     getInstruments().then(setInstrumentList);
   });
 
@@ -71,6 +77,7 @@ const TaskForm = ({
       <FormGroup>
         <Label for="duration">duration...</Label>
         <Input
+          id='duration'
           type="number"
           name="duration"
           placeholder="0"
@@ -81,6 +88,7 @@ const TaskForm = ({
       <FormGroup>
         <Label for="topicId">topic...</Label>
         <Input
+          id='topicId'
           type="select"
           name="topicId"
           placeholder=""
@@ -98,13 +106,14 @@ const TaskForm = ({
       <FormGroup>
         <Label for="subTopicId">subTopic...</Label>
         <Input
+          id='subTopicId'
           type="select"
           name="subTopicId"
           placeholder=""
           onChange={handleInputChange}
         >
           <option value=''>selectSubTopic...</option>
-          {topicList.map((topic) => (
+          {subTopicList.map((topic) => (
             <option
               key={topic.firebaseKey}
               value={topic.firebaseKey}>
@@ -116,6 +125,7 @@ const TaskForm = ({
       <FormGroup>
         <Label for="instrumentId">instrument...</Label>
         <Input
+          id='instrumentId'
           type="select"
           name="instrumentId"
           placeholder=""
@@ -134,6 +144,7 @@ const TaskForm = ({
       <FormGroup>
         <Label for="day">date...</Label>
         <Input
+          id='day'
           type="string"
           name="day"
           placeholder="YYYY-MM-DDTHH:MM:SSZ"
@@ -143,6 +154,7 @@ const TaskForm = ({
       <FormGroup>
         <Label for="description">description...</Label>
         <Input
+          id='description'
           type="string"
           name="description"
           placeholder=""
@@ -152,6 +164,7 @@ const TaskForm = ({
       <FormGroup>
         <Label for="reviewNotes">reviewNotes...</Label>
         <Input
+          id='reviewNotes'
           type="string"
           name="reviewNotes"
           placeholder=""
@@ -214,6 +227,7 @@ const TaskForm = ({
 };
 
 TaskForm.propTypes = {
+  user: PropTypes.any,
   day: PropTypes.string,
   description: PropTypes.string,
   duration: PropTypes.number,
@@ -222,7 +236,7 @@ TaskForm.propTypes = {
   reviewNotes: PropTypes.string,
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
-  uid: PropTypes.string,
+  // uid: PropTypes.string,
   setTasks: PropTypes.func,
 };
 

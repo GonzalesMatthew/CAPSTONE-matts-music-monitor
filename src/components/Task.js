@@ -24,7 +24,11 @@ export default function Task({ ...rest }) {
   const [instrument, setInstrument] = useState([]);
   useEffect(() => {
     getTopic(rest.topicId).then(setTopic);
+  }, []);
+  useEffect(() => {
     getTopic(rest.subTopicId).then(setSubTopic);
+  }, []);
+  useEffect(() => {
     getInstrument(rest.instrumentId).then(setInstrument);
   }, []);
   return (
