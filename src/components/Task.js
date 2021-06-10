@@ -19,9 +19,13 @@ const useStyles = makeStyles(() => ({
 }));
 export default function Task({ ...rest }) {
   const classes = useStyles();
+
+  // get topic, subTopic, and instrument names for updateForm
   const [topic, setTopic] = useState([]);
   const [subTopic, setSubTopic] = useState([]);
   const [instrument, setInstrument] = useState([]);
+
+  // get topic, subTopic, and instrument names for updateForm
   useEffect(() => {
     getTopic(rest.topicId).then(setTopic);
   }, []);
@@ -31,6 +35,7 @@ export default function Task({ ...rest }) {
   useEffect(() => {
     getInstrument(rest.instrumentId).then(setInstrument);
   }, []);
+
   return (
     <Container className={classes.task}>
       <div className='d-flex flex-row'>
@@ -59,7 +64,7 @@ Task.propTypes = {
   reviewNotes: PropTypes.string,
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
-  uid: PropTypes.any,
+  user: PropTypes.any,
   modalStatus: PropTypes.bool,
   setModalStatus: PropTypes.func
 };

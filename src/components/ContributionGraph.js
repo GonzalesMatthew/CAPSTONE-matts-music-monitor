@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles, Container, Paper } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,13 +17,17 @@ const useStyles = makeStyles((theme) => ({
     // color: '#C9D1D9'
   },
 }));
-export default function ContributionGraph() {
+export default function ContributionGraph({ user }) {
   const classes = useStyles();
   return (
     <Container>
       <Paper className={classes.paper} elevation={6}>
-        Graph goes here :)
+        Graph goes here :) {user.uid}
       </Paper>
     </Container>
   );
 }
+
+ContributionGraph.propTypes = {
+  user: PropTypes.any,
+};

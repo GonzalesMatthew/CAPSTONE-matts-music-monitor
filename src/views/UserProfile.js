@@ -13,8 +13,18 @@ export default function UserProfile({
   }, []);
   return (
     <>
-      <UserLanding user={user} modalStatus={modalStatus} setModalStatus={setModalStatus} setTasks={setTasks}/>
-      <TaskWindow user={user} tasks={tasks} modalStatus={modalStatus} setModalStatus={setModalStatus}/>
+      <UserLanding
+        user={user}
+        modalStatus={modalStatus}
+        setModalStatus={setModalStatus}
+        setTasks={setTasks}
+      />
+      <TaskWindow
+        user={user}
+        tasks={tasks}
+        modalStatus={modalStatus}
+        setModalStatus={setModalStatus}
+      />
       <ContributionGraph user={user}/>
     </>
   );

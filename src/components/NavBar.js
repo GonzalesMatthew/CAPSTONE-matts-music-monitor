@@ -14,13 +14,13 @@ import { signOutUser } from '../helpers/auth';
 const NavBar = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = () => setIsOpen(!isOpen);
+  const navToggle = () => setIsOpen(!isOpen);
 
   return (
     <div>
       <Navbar color="dark" dark expand="md">
         <NavbarBrand>musicMonitor...</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
+        <NavbarToggler onClick={navToggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             {

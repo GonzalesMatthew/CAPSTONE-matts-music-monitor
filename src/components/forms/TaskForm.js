@@ -57,6 +57,7 @@ const TaskForm = ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+    console.warn(taskObj);
   };
 
   // handle submit
@@ -236,7 +237,6 @@ TaskForm.propTypes = {
   reviewNotes: PropTypes.string,
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
-  // uid: PropTypes.string,
   setTasks: PropTypes.func,
 };
 

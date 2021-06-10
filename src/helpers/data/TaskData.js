@@ -10,12 +10,12 @@ const getTasks = (uid) => new Promise((resolve, reject) => {
 });
 
 const addTask = (taskObj) => new Promise((resolve, reject) => {
-  axios.post(`${dbUrl}/task.json, ${taskObj}`)
+  axios.post(`${dbUrl}/task.json`, taskObj)
     .then((response) => {
       const fbKey = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/task/${response.data.name}.json`, fbKey)
         .then(() => {
-          getTasks().then((taskArray) => resolve(taskArray));
+          getTasks(taskObj.uid).then((taskArray) => resolve(taskArray));
         });
     })
     .catch((error) => reject(error));
