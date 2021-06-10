@@ -5,7 +5,8 @@ import {
 } from '@material-ui/core';
 import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
-import ModalContainer from './forms/ModalContainer';
+// import ModalContainer from './forms/ModalContainer';
+import TaskForm from './forms/TaskForm';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,8 +55,13 @@ export default function UserLanding({
               <Button color='dark' onClick={modalToggle}>
                 addTask...
               </Button>
+              {/* modalStatus used as placeholder right now for form visibility */}
+              { modalStatus === true
+                && <TaskForm user={user} formName={'addTask...'} setTasks={setTasks} modalStatus={modalStatus} setModalStatus={setModalStatus}/>
+              }
               {/* my modal component is here: ModalContainer */}
-              <ModalContainer user={user} formName={'addTask...'} setTasks={setTasks} modalStatus={modalStatus} modalToggle={modalToggle}/>
+              {/* modal part of stretch goals */}
+              {/* <ModalContainer user={user} formName={'addTask...'} setTasks={setTasks} modalStatus={modalStatus} modalToggle={modalToggle}/> */}
             </Div>
           </div>
         </div>

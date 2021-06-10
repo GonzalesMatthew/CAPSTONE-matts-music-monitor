@@ -5,11 +5,11 @@ import React, {
 import PropTypes from 'prop-types';
 import {
   Form, FormGroup,
-  Label, Input
+  Label, Input, Button
 } from 'reactstrap';
 import { getTopics } from '../../helpers/data/TopicData';
 import { getInstruments } from '../../helpers/data/InstrumentData';
-import { addTask } from '../../helpers/data/TaskData';
+import { updateTask, addTask } from '../../helpers/data/TaskData';
 
 const TaskForm = ({
   user,
@@ -22,6 +22,9 @@ const TaskForm = ({
   subTopicId,
   topicId,
   setTasks,
+  formName,
+  setModalStatus,
+  modalStatus
 }) => {
   // define task object
   const [taskObj, setTaskObj] = useState({
@@ -37,6 +40,7 @@ const TaskForm = ({
   });
 
   // hooks for topic and instrument data
+  debugger;
   const [topicList, setTopicList] = useState([]);
   const [subTopicList, setSubTopicList] = useState([]);
   const [instrumentList, setInstrumentList] = useState([]);
@@ -57,24 +61,25 @@ const TaskForm = ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    console.warn(taskObj);
   };
 
   // handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskObj.firebaseKey) {
-      console.warn('update task', taskObj);
+      updateTask(taskObj).then(setTasks);
     } else {
-      console.warn('add task', taskObj);
       addTask(taskObj).then(setTasks);
+      setModalStatus(!modalStatus);
     }
   };
 
   return (
     <Form
+      id='addTaskForm'
       autoComplete='off'
       onSubmit={handleSubmit}>
+        <h2>{formName}</h2>
       <FormGroup>
         <Label for="duration">duration...</Label>
         <Input
@@ -172,6 +177,7 @@ const TaskForm = ({
           value={taskObj.reviewNotes}
           onChange={handleInputChange}/>
       </FormGroup>
+      <Button type='submit' color='dark'>submit...</Button>
 {/*
       <Label>tascamTrack:</Label>
       <FormGroup>
@@ -238,6 +244,9 @@ TaskForm.propTypes = {
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
   setTasks: PropTypes.func,
+  formName: PropTypes.string,
+  modalStatus: PropTypes.bool,
+  setModalStatus: PropTypes.func,
 };
 
 export default TaskForm;
