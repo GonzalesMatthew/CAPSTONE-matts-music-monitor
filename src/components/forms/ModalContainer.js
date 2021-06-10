@@ -14,15 +14,15 @@ import TaskForm from './TaskForm';
 // }));
 
 const ModalContainer = ({
-  formName, modalStatus, toggle, setTasks, user
+  formName, modalStatus, modalToggle, setTasks, user
 }) => (
   // const classes = useStyles();
     <Modal
       // dialogClassName={classes.modal}
       size='md'
-      isOpen={modalStatus} toggle={toggle}
+      isOpen={modalStatus} toggle={modalToggle}
     >
-      <ModalHeader toggle={toggle}>{formName}</ModalHeader>
+      <ModalHeader toggle={modalToggle}>{formName}</ModalHeader>
       <ModalBody>
         <TaskForm
           user={user}
@@ -40,8 +40,8 @@ const ModalContainer = ({
         </Modal> */}
       </ModalBody>
       <ModalFooter>
-        <Button color="dark" onClick={toggle}>Submit...</Button>{' '}
-        <Button color="dark" onClick={toggle}>Cancel...</Button>
+        <Button color="dark" onClick={modalToggle}>Submit...</Button>
+        <Button color="dark" onClick={modalToggle}>Cancel...</Button>
       </ModalFooter>
     </Modal>
 );
@@ -51,7 +51,7 @@ export default ModalContainer;
 ModalContainer.propTypes = {
   formName: PropTypes.string,
   modalStatus: PropTypes.bool,
-  toggle: PropTypes.func,
+  modalToggle: PropTypes.func,
   setTasks: PropTypes.func,
   user: PropTypes.any
 };

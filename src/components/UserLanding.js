@@ -32,7 +32,7 @@ export default function UserLanding({
   user, modalStatus, setModalStatus, setTasks
 }) {
   const classes = useStyles();
-  const toggle = () => setModalStatus(!modalStatus);
+  const modalToggle = () => setModalStatus(!modalStatus);
   return (
     <Container>
       <Paper className={classes.paper} elevation={6}>
@@ -51,10 +51,11 @@ export default function UserLanding({
               </Typography>
             </Div>
             <Div>
-              <Button color='dark' onClick={toggle}>
+              <Button color='dark' onClick={modalToggle}>
                 addTask...
               </Button>
-              <ModalContainer user={user} formName={'addTask...'} setTasks={setTasks} modalStatus={modalStatus} toggle={toggle}/>
+              {/* my modal component is here: ModalContainer */}
+              <ModalContainer user={user} formName={'addTask...'} setTasks={setTasks} modalStatus={modalStatus} modalToggle={modalToggle}/>
             </Div>
           </div>
         </div>
