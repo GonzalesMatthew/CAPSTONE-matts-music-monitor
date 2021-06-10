@@ -12,15 +12,15 @@ import { getInstruments } from '../../helpers/data/InstrumentData';
 import { addTask } from '../../helpers/data/TaskData';
 
 const TaskForm = ({
-  day = '',
-  description = '',
-  duration = '',
-  firebaseKey = '',
-  instrumentId = '',
-  reviewNotes = '',
-  subTopicId = '',
-  topicId = '',
-  uid = '',
+  day,
+  description,
+  duration,
+  firebaseKey,
+  instrumentId,
+  reviewNotes,
+  subTopicId,
+  topicId,
+  uid,
   setTasks,
 }) => {
   // define task object
@@ -51,21 +51,23 @@ const TaskForm = ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    console.warn(taskObj);
   };
 
   // handle submit
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskObj.firebaseKey) {
-      console.warn('update submit');
+      console.warn('update task', taskObj);
     } else {
+      console.warn('add task', taskObj);
       addTask(taskObj).then(setTasks);
     }
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form
+      autoComplete='off'
+      onSubmit={handleSubmit}>
       <FormGroup>
         <Label for="duration">duration...</Label>
         <Input
@@ -73,6 +75,7 @@ const TaskForm = ({
           name="duration"
           placeholder="0"
           min='0'
+          value={taskObj.duration}
           onChange={handleInputChange}/>
       </FormGroup>
       <FormGroup>
@@ -134,6 +137,7 @@ const TaskForm = ({
           type="string"
           name="day"
           placeholder="YYYY-MM-DDTHH:MM:SSZ"
+          value={taskObj.day}
           onChange={handleInputChange}/>
       </FormGroup>
       <FormGroup>
@@ -142,6 +146,7 @@ const TaskForm = ({
           type="string"
           name="description"
           placeholder=""
+          value={taskObj.description}
           onChange={handleInputChange}/>
       </FormGroup>
       <FormGroup>
@@ -150,8 +155,10 @@ const TaskForm = ({
           type="string"
           name="reviewNotes"
           placeholder=""
+          value={taskObj.reviewNotes}
           onChange={handleInputChange}/>
       </FormGroup>
+{/*
       <Label>tascamTrack:</Label>
       <FormGroup>
         <Label for="memo1">memo1...</Label>
@@ -159,6 +166,7 @@ const TaskForm = ({
           type="string"
           name="memo1"
           placeholder=""
+          // value={taskObj.memo1}
           onChange={handleInputChange}/>
       </FormGroup>
       <FormGroup>
@@ -200,7 +208,7 @@ const TaskForm = ({
           name="memoTime3"
           placeholder=""
           onChange={handleInputChange}/>
-      </FormGroup>
+      </FormGroup> */}
     </Form>
   );
 };
