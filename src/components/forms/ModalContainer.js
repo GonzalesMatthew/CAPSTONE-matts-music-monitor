@@ -2,7 +2,8 @@ import React from 'react';
 // import { makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import {
-  Button, Modal, ModalBody, ModalFooter, ModalHeader
+  Modal, ModalBody, ModalHeader,
+  // Button, ModalFooter
 } from 'reactstrap';
 import TaskForm from './TaskForm';
 
@@ -27,6 +28,7 @@ const ModalContainer = ({
         <TaskForm
           user={user}
           setTasks={setTasks}
+          modalToggle={modalToggle}
         />
         <br />
         {/* <Button color="success" onClick={toggleNested}>Show Nested Modal</Button> */}
@@ -39,10 +41,10 @@ const ModalContainer = ({
           </ModalFooter>
         </Modal> */}
       </ModalBody>
-      <ModalFooter>
-        <Button color="dark" onClick={modalToggle}>Submit...</Button>
+      {/* <ModalFooter>
+        <Button type='submit'color="dark">Submit...</Button>
         <Button color="dark" onClick={modalToggle}>Cancel...</Button>
-      </ModalFooter>
+      </ModalFooter> */}
     </Modal>
 );
 

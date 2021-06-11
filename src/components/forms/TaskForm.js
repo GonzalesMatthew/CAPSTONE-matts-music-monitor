@@ -5,7 +5,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
   Form, FormGroup,
-  Label, Input
+  Label, Input, Button,
 } from 'reactstrap';
 import { getTopics } from '../../helpers/data/TopicData';
 import { getInstruments } from '../../helpers/data/InstrumentData';
@@ -22,6 +22,7 @@ const TaskForm = ({
   subTopicId,
   topicId,
   setTasks,
+  modalToggle,
 }) => {
   // define task object
   const [taskObj, setTaskObj] = useState({
@@ -43,21 +44,16 @@ const TaskForm = ({
 
   useEffect(() => {
     getTopics().then(setTopicList);
-  });
-  useEffect(() => {
     getTopics().then(setSubTopicList);
-  });
-  useEffect(() => {
     getInstruments().then(setInstrumentList);
-  });
+  }, []);
 
   // handle input changes
   const handleInputChange = (e) => {
     setTaskObj((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.name === 'duration' ? Number(e.target.value) : e.target.value,
     }));
-    console.warn(taskObj);
   };
 
   // handle submit
@@ -66,7 +62,6 @@ const TaskForm = ({
     if (taskObj.firebaseKey) {
       console.warn('update task', taskObj);
     } else {
-      console.warn('add task', taskObj);
       addTask(taskObj).then(setTasks);
     }
   };
@@ -146,9 +141,9 @@ const TaskForm = ({
         <Label for="day">date...</Label>
         <Input
           id='day'
-          type="string"
+          type="date"
           name="day"
-          placeholder="YYYY-MM-DDTHH:MM:SSZ"
+          placeholder=""
           value={taskObj.day}
           onChange={handleInputChange}/>
       </FormGroup>
@@ -158,7 +153,7 @@ const TaskForm = ({
           id='description'
           type="string"
           name="description"
-          placeholder=""
+          placeholder="enterDescription..."
           value={taskObj.description}
           onChange={handleInputChange}/>
       </FormGroup>
@@ -168,7 +163,7 @@ const TaskForm = ({
           id='reviewNotes'
           type="string"
           name="reviewNotes"
-          placeholder=""
+          placeholder="enterReviewNotes..."
           value={taskObj.reviewNotes}
           onChange={handleInputChange}/>
       </FormGroup>
@@ -223,13 +218,16 @@ const TaskForm = ({
           placeholder=""
           onChange={handleInputChange}/>
       </FormGroup> */}
+      {/* <Button type='submit'color="dark">Submit...</Button> */}
+      <Button type='submit'color="dark">Submit...</Button>
+      <Button color="dark" onClick={modalToggle}>Cancel...</Button>
     </Form>
   );
 };
 
 TaskForm.propTypes = {
   user: PropTypes.any,
-  day: PropTypes.string,
+  day: PropTypes.instanceOf(Date),
   description: PropTypes.string,
   duration: PropTypes.number,
   firebaseKey: PropTypes.string,
@@ -238,6 +236,7 @@ TaskForm.propTypes = {
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
   setTasks: PropTypes.func,
+  modalToggle: PropTypes.func,
 };
 
 export default TaskForm;
