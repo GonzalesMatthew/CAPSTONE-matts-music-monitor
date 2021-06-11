@@ -6,6 +6,7 @@ import images from '../helpers/images/images';
 import { getTopic } from '../helpers/data/TopicData';
 import { getInstrument } from '../helpers/data/InstrumentData';
 import ModalContainer from './forms/ModalContainer';
+import { deleteTask } from '../helpers/data/TaskData';
 
 const useStyles = makeStyles(() => ({
   task: {
@@ -32,6 +33,20 @@ export default function Task({ ...rest }) {
     getInstrument(rest.instrumentId).then(setInstrument);
   }, []);
 
+  // const handleClick = (type) => {
+  //   switch (type) {
+  //     case 'delete':
+  //       deleteTask(firebaseKey)
+  //         .then(setTasks);
+  //       break;
+  //     case 'view':
+  //       updateTask((prevState) => !prevState);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
+
   return (
     <Container className={classes.task}>
       <div className='d-flex flex-row'>
@@ -44,8 +59,10 @@ export default function Task({ ...rest }) {
         <Button color='dark'>
           <img className={classes.image} alt={`Icon image of ${instrument.instrument}`} src={instrument.instrumentIcon}/>
         </Button>
+        {/* view/edit button */}
         <Button color='dark' onClick={rest.modalToggle}><img alt='view button' src={images.eyeIcon}/></Button>
-        <Button color='dark'><img alt='delete button' src={images.xIcon}/></Button>
+        {/* delete button */}
+        <Button color='dark' onClick={() => deleteTask(rest.firebaseKey, rest.user.uid).then(rest.setTasks)}><img alt='delete button' src={images.xIcon}/></Button>
       </div>
       <ModalContainer user={rest.user} formName={'updateTask...'} setTasks={rest.setTasks} modalStatus={rest.modalStatus} modalToggle={rest.modalToggle}/>
     </Container>

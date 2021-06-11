@@ -88,6 +88,7 @@ const TaskForm = ({
           type="select"
           name="topicId"
           placeholder=""
+          value={taskObj.topicId}
           onChange={handleInputChange}
         >
           <option value=''>selectTopic...</option>
@@ -106,6 +107,7 @@ const TaskForm = ({
           type="select"
           name="subTopicId"
           placeholder=""
+          value={taskObj.subTopicId}
           onChange={handleInputChange}
         >
           <option value=''>selectSubTopic...</option>
@@ -125,6 +127,7 @@ const TaskForm = ({
           type="select"
           name="instrumentId"
           placeholder=""
+          value={taskObj.instrumentId}
           onChange={handleInputChange}
         >
           <option value=''>selectInstrument...</option>

@@ -27,4 +27,12 @@ const updateTask = (taskObj) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { getTasks, addTask, updateTask };
+const deleteTask = (firebaseKey, uid) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/task/${firebaseKey}.json`)
+    .then(() => getTasks(uid).then(resolve))
+    .catch((error) => reject(error));
+});
+
+export {
+  getTasks, addTask, updateTask, deleteTask
+};
