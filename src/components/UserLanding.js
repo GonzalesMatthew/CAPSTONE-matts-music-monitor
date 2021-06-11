@@ -29,7 +29,7 @@ const Div = styled.div`
   align-items: center;
 `;
 export default function UserLanding({
-  user, modalStatus, setTasks, modalToggle
+  user, setTasks, modalStatus, modalToggle
 }) {
   const classes = useStyles();
   return (

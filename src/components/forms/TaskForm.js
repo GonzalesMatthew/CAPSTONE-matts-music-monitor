@@ -12,28 +12,29 @@ import { getInstruments } from '../../helpers/data/InstrumentData';
 import { addTask, updateTask } from '../../helpers/data/TaskData';
 
 const TaskForm = ({
+  task,
   user,
-  day,
-  description,
-  duration,
-  firebaseKey,
-  instrumentId,
-  reviewNotes,
-  subTopicId,
-  topicId,
+  // day,
+  // description,
+  // duration,
+  // firebaseKey,
+  // instrumentId,
+  // reviewNotes,
+  // subTopicId,
+  // topicId,
   setTasks,
   modalToggle,
 }) => {
   // define task object
   const [taskObj, setTaskObj] = useState({
-    day: day || '',
-    description: description || '',
-    duration: duration || '',
-    firebaseKey: firebaseKey || null,
-    instrumentId: instrumentId || '',
-    reviewNotes: reviewNotes || '',
-    subTopicId: subTopicId || '',
-    topicId: topicId || '',
+    day: task.day || '',
+    description: task.description || '',
+    duration: task.duration || '',
+    firebaseKey: task.firebaseKey || null,
+    instrumentId: task.instrumentId || '',
+    reviewNotes: task.reviewNotes || '',
+    subTopicId: task.subTopicId || '',
+    topicId: task.topicId || '',
     uid: user.uid || ''
   });
 
@@ -70,6 +71,7 @@ const TaskForm = ({
     <Form
       autoComplete='off'
       onSubmit={handleSubmit}>
+      {/* duration */}
       <FormGroup>
         <Label for="duration">duration...</Label>
         <Input
@@ -78,9 +80,10 @@ const TaskForm = ({
           name="duration"
           placeholder="0"
           min='0'
-          value={taskObj.duration}
+          value={task.duration}
           onChange={handleInputChange}/>
       </FormGroup>
+      {/* topicId */}
       <FormGroup>
         <Label for="topicId">topic...</Label>
         <Input
@@ -88,7 +91,7 @@ const TaskForm = ({
           type="select"
           name="topicId"
           placeholder=""
-          value={taskObj.topicId}
+          value={task.topicId}
           onChange={handleInputChange}
         >
           <option value=''>selectTopic...</option>
@@ -100,6 +103,7 @@ const TaskForm = ({
           ))}
         </Input>
       </FormGroup>
+      {/* subTopicId */}
       <FormGroup>
         <Label for="subTopicId">subTopic...</Label>
         <Input
@@ -107,7 +111,7 @@ const TaskForm = ({
           type="select"
           name="subTopicId"
           placeholder=""
-          value={taskObj.subTopicId}
+          value={task.subTopicId}
           onChange={handleInputChange}
         >
           <option value=''>selectSubTopic...</option>
@@ -120,6 +124,7 @@ const TaskForm = ({
           ))}
         </Input>
       </FormGroup>
+      {/* instrumentId */}
       <FormGroup>
         <Label for="instrumentId">instrument...</Label>
         <Input
@@ -127,7 +132,7 @@ const TaskForm = ({
           type="select"
           name="instrumentId"
           placeholder=""
-          value={taskObj.instrumentId}
+          value={task.instrumentId}
           onChange={handleInputChange}
         >
           <option value=''>selectInstrument...</option>
@@ -140,6 +145,7 @@ const TaskForm = ({
           </Input>
       </FormGroup>
       <br/>
+      {/* day */}
       <FormGroup>
         <Label for="day">date...</Label>
         <Input
@@ -147,9 +153,10 @@ const TaskForm = ({
           type="date"
           name="day"
           placeholder=""
-          value={taskObj.day}
+          value={task.day}
           onChange={handleInputChange}/>
       </FormGroup>
+      {/* description */}
       <FormGroup>
         <Label for="description">description...</Label>
         <Input
@@ -157,9 +164,10 @@ const TaskForm = ({
           type="string"
           name="description"
           placeholder="enterDescription..."
-          value={taskObj.description}
+          value={task.description}
           onChange={handleInputChange}/>
       </FormGroup>
+      {/* reviewNotes */}
       <FormGroup>
         <Label for="reviewNotes">reviewNotes...</Label>
         <Input
@@ -167,7 +175,7 @@ const TaskForm = ({
           type="string"
           name="reviewNotes"
           placeholder="enterReviewNotes..."
-          value={taskObj.reviewNotes}
+          value={task.reviewNotes}
           onChange={handleInputChange}/>
       </FormGroup>
 {/*
@@ -229,15 +237,16 @@ const TaskForm = ({
 };
 
 TaskForm.propTypes = {
+  task: PropTypes.object,
   user: PropTypes.any,
-  day: PropTypes.instanceOf(Date),
-  description: PropTypes.string,
-  duration: PropTypes.number,
-  firebaseKey: PropTypes.string,
-  instrumentId: PropTypes.string,
-  reviewNotes: PropTypes.string,
-  subTopicId: PropTypes.string,
-  topicId: PropTypes.string,
+  // day: PropTypes.instanceOf(Date),
+  // description: PropTypes.string,
+  // duration: PropTypes.number,
+  // firebaseKey: PropTypes.string,
+  // instrumentId: PropTypes.string,
+  // reviewNotes: PropTypes.string,
+  // subTopicId: PropTypes.string,
+  // topicId: PropTypes.string,
   setTasks: PropTypes.func,
   modalToggle: PropTypes.func,
 };

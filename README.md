@@ -8,6 +8,8 @@ This app lets you monitor your music training over time. Choose which day, durat
   [Wireframe](https://www.figma.com/file/ISJ4a8Mfql6TLwYahDhUDG/CAPSTONE-Matt-s-Music-Monitor?node-id=2%3A13)
 ### Link to my project board
   [Project Board](https://github.com/GonzalesMatthew/CAPSTONE-matts-music-monitor/projects/1)
+### Link to my flow chart
+  [Flow Chart](https://docs.google.com/presentation/d/16cxnh2h54LLz4B3zN4nnbWFl6mPgwnGqWR94YYEu9jc/edit?usp=sharing)
 ### Link to the deployed project
   [Deployed Project]()
 ### Description of the user

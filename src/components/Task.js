@@ -28,11 +28,12 @@ export default function Task({ ...rest }) {
 
   // get topic, subTopic, and instrument names for updateForm
   useEffect(() => {
-    getTopic(rest.topicId).then(setTopic);
-    getTopic(rest.subTopicId).then(setSubTopic);
-    getInstrument(rest.instrumentId).then(setInstrument);
+    getTopic(rest.task.topicId).then(setTopic);
+    getTopic(rest.task.subTopicId).then(setSubTopic);
+    getInstrument(rest.task.instrumentId).then(setInstrument);
   }, []);
 
+  // I can likely delete this
   // const handleClick = (type) => {
   //   switch (type) {
   //     case 'delete':
@@ -53,6 +54,7 @@ export default function Task({ ...rest }) {
         <Button color='dark' className='flex-grow-1'>
           {topic.topic}: {subTopic.topic}
         </Button>
+        {/* instrument button */}
         {/* <Button color='dark'>
           {instrument.instrument}
         </Button> */}
@@ -62,25 +64,29 @@ export default function Task({ ...rest }) {
         {/* view/edit button */}
         <Button color='dark' onClick={rest.modalToggle}><img alt='view button' src={images.eyeIcon}/></Button>
         {/* delete button */}
-        <Button color='dark' onClick={() => deleteTask(rest.firebaseKey, rest.user.uid).then(rest.setTasks)}><img alt='delete button' src={images.xIcon}/></Button>
+        <Button color='dark' onClick={() => {
+          // eslint-disable-next-line no-alert
+          if (window.confirm('delete...?')) {
+            deleteTask(rest.task.firebaseKey, rest.user.uid).then(rest.setTasks);
+          }
+        }
+        }><img alt='delete button' src={images.xIcon}
+        /></Button>
       </div>
-      <ModalContainer user={rest.user} formName={'updateTask...'} setTasks={rest.setTasks} modalStatus={rest.modalStatus} modalToggle={rest.modalToggle}/>
+      <ModalContainer user={rest.user} formName={'updateTask...'} setTasks={rest.setTasks} modalStatus={rest.modalStatus} modalToggle={rest.modalToggle} task={rest.task}/>
     </Container>
   );
 }
 
 Task.propTypes = {
-  day: PropTypes.string,
-  description: PropTypes.string,
-  duration: PropTypes.number,
+  task: PropTypes.object,
+  // following two live in task
   firebaseKey: PropTypes.string,
   instrumentId: PropTypes.string,
-  reviewNotes: PropTypes.string,
-  subTopicId: PropTypes.string,
-  topicId: PropTypes.string,
+
   user: PropTypes.any,
+  setTasks: PropTypes.func,
   modalStatus: PropTypes.bool,
   setModalStatus: PropTypes.func,
-  setTasks: PropTypes.func,
   modalToggle: PropTypes.func,
 };
