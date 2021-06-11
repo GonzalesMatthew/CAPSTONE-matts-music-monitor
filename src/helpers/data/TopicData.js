@@ -9,4 +9,12 @@ const getTopic = (topicId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getTopic;
+const getTopics = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/topic.json`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
+export {
+  getTopic, getTopics
+};

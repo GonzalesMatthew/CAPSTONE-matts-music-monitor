@@ -2,7 +2,8 @@ import React from 'react';
 // import { makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import {
-  Button, Modal, ModalBody, ModalFooter, ModalHeader
+  Modal, ModalBody, ModalHeader,
+  // Button, ModalFooter
 } from 'reactstrap';
 import TaskForm from './TaskForm';
 
@@ -13,16 +14,22 @@ import TaskForm from './TaskForm';
 //   }
 // }));
 
-const ModalContainer = ({ formName, modalStatus, toggle }) => (
+const ModalContainer = ({
+  formName, modalStatus, modalToggle, setTasks, user
+}) => (
   // const classes = useStyles();
     <Modal
       // dialogClassName={classes.modal}
       size='md'
-      isOpen={modalStatus} toggle={toggle}
+      isOpen={modalStatus} toggle={modalToggle}
     >
-      <ModalHeader toggle={toggle}>{formName}</ModalHeader>
+      <ModalHeader toggle={modalToggle}>{formName}</ModalHeader>
       <ModalBody>
-        <TaskForm/>
+        <TaskForm
+          user={user}
+          setTasks={setTasks}
+          modalToggle={modalToggle}
+        />
         <br />
         {/* <Button color="success" onClick={toggleNested}>Show Nested Modal</Button> */}
         {/* <Modal isOpen={nestedModal} toggle={toggleNested} onClosed={closeAll ? toggle : undefined}>
@@ -34,10 +41,10 @@ const ModalContainer = ({ formName, modalStatus, toggle }) => (
           </ModalFooter>
         </Modal> */}
       </ModalBody>
-      <ModalFooter>
-        <Button color="dark" onClick={toggle}>Submit...</Button>{' '}
-        <Button color="dark" onClick={toggle}>Cancel...</Button>
-      </ModalFooter>
+      {/* <ModalFooter>
+        <Button type='submit'color="dark">Submit...</Button>
+        <Button color="dark" onClick={modalToggle}>Cancel...</Button>
+      </ModalFooter> */}
     </Modal>
 );
 
@@ -46,5 +53,7 @@ export default ModalContainer;
 ModalContainer.propTypes = {
   formName: PropTypes.string,
   modalStatus: PropTypes.bool,
-  toggle: PropTypes.func
+  modalToggle: PropTypes.func,
+  setTasks: PropTypes.func,
+  user: PropTypes.any
 };

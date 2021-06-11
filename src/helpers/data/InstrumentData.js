@@ -9,4 +9,10 @@ const getInstrument = (instrumentId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getInstrument;
+const getInstruments = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/instrument.json`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
+export { getInstrument, getInstruments };

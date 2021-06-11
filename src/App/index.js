@@ -3,7 +3,7 @@ import 'firebase/auth';
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import firebaseConfig from '../helpers/apiKeys';
-import getTasks from '../helpers/data/TaskData';
+import { getTasks } from '../helpers/data/TaskData';
 import Routes from '../helpers/Routes';
 import './App.scss';
 
@@ -37,6 +37,7 @@ function App() {
     <Routes
       user={user}
       tasks={tasks}
+      setTasks={setTasks}
     />
   </>
   );

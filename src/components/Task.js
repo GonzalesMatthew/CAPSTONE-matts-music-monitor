@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { makeStyles, Container } from '@material-ui/core';
 import { Button } from 'reactstrap';
 import images from '../helpers/images/images';
-import getTopic from '../helpers/data/TopicData';
-import getInstrument from '../helpers/data/InstrumentData';
+import { getTopic } from '../helpers/data/TopicData';
+import { getInstrument } from '../helpers/data/InstrumentData';
 
 const useStyles = makeStyles(() => ({
   task: {
@@ -19,14 +19,23 @@ const useStyles = makeStyles(() => ({
 }));
 export default function Task({ ...rest }) {
   const classes = useStyles();
+
+  // get topic, subTopic, and instrument names for updateForm
   const [topic, setTopic] = useState([]);
   const [subTopic, setSubTopic] = useState([]);
   const [instrument, setInstrument] = useState([]);
+
+  // get topic, subTopic, and instrument names for updateForm
   useEffect(() => {
     getTopic(rest.topicId).then(setTopic);
+  }, []);
+  useEffect(() => {
     getTopic(rest.subTopicId).then(setSubTopic);
+  }, []);
+  useEffect(() => {
     getInstrument(rest.instrumentId).then(setInstrument);
   }, []);
+
   return (
     <Container className={classes.task}>
       <div className='d-flex flex-row'>
@@ -55,7 +64,7 @@ Task.propTypes = {
   reviewNotes: PropTypes.string,
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
-  uid: PropTypes.any,
+  user: PropTypes.any,
   modalStatus: PropTypes.bool,
   setModalStatus: PropTypes.func
 };
