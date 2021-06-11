@@ -29,10 +29,9 @@ const Div = styled.div`
   align-items: center;
 `;
 export default function UserLanding({
-  user, modalStatus, setModalStatus, setTasks
+  user, modalStatus, setTasks, modalToggle
 }) {
   const classes = useStyles();
-  const modalToggle = () => setModalStatus(!modalStatus);
   return (
     <Container>
       <Paper className={classes.paper} elevation={6}>
@@ -67,6 +66,6 @@ export default function UserLanding({
 UserLanding.propTypes = {
   user: PropTypes.any.isRequired,
   modalStatus: PropTypes.bool,
-  setModalStatus: PropTypes.func,
-  setTasks: PropTypes.func
+  setTasks: PropTypes.func,
+  modalToggle: PropTypes.func,
 };

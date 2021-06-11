@@ -1,4 +1,3 @@
-// import React from 'react';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, Container } from '@material-ui/core';
@@ -6,6 +5,7 @@ import { Button } from 'reactstrap';
 import images from '../helpers/images/images';
 import { getTopic } from '../helpers/data/TopicData';
 import { getInstrument } from '../helpers/data/InstrumentData';
+import ModalContainer from './forms/ModalContainer';
 
 const useStyles = makeStyles(() => ({
   task: {
@@ -28,11 +28,7 @@ export default function Task({ ...rest }) {
   // get topic, subTopic, and instrument names for updateForm
   useEffect(() => {
     getTopic(rest.topicId).then(setTopic);
-  }, []);
-  useEffect(() => {
     getTopic(rest.subTopicId).then(setSubTopic);
-  }, []);
-  useEffect(() => {
     getInstrument(rest.instrumentId).then(setInstrument);
   }, []);
 
@@ -48,9 +44,10 @@ export default function Task({ ...rest }) {
         <Button color='dark'>
           <img className={classes.image} alt={`Icon image of ${instrument.instrument}`} src={instrument.instrumentIcon}/>
         </Button>
-        <Button color='dark'><img alt='view button' src={images.eyeIcon}/></Button>
+        <Button color='dark' onClick={rest.modalToggle}><img alt='view button' src={images.eyeIcon}/></Button>
         <Button color='dark'><img alt='delete button' src={images.xIcon}/></Button>
       </div>
+      <ModalContainer user={rest.user} formName={'updateTask...'} setTasks={rest.setTasks} modalStatus={rest.modalStatus} modalToggle={rest.modalToggle}/>
     </Container>
   );
 }
@@ -66,5 +63,7 @@ Task.propTypes = {
   topicId: PropTypes.string,
   user: PropTypes.any,
   modalStatus: PropTypes.bool,
-  setModalStatus: PropTypes.func
+  setModalStatus: PropTypes.func,
+  setTasks: PropTypes.func,
+  modalToggle: PropTypes.func,
 };

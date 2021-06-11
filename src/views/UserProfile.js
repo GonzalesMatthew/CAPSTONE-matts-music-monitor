@@ -8,6 +8,7 @@ export default function UserProfile({
   user, tasks, setTasks
 }) {
   const [modalStatus, setModalStatus] = useState(false);
+  const modalToggle = () => setModalStatus(!modalStatus);
   useEffect(() => {
     setModalStatus(false);
   }, []);
@@ -18,12 +19,14 @@ export default function UserProfile({
         modalStatus={modalStatus}
         setModalStatus={setModalStatus}
         setTasks={setTasks}
+        modalToggle={modalToggle}
       />
       <TaskWindow
         user={user}
         tasks={tasks}
         modalStatus={modalStatus}
         setModalStatus={setModalStatus}
+        modalToggle={modalToggle}
       />
       <ContributionGraph user={user}/>
     </>

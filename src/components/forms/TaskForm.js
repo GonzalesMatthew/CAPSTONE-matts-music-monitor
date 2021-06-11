@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 import { getTopics } from '../../helpers/data/TopicData';
 import { getInstruments } from '../../helpers/data/InstrumentData';
-import { addTask } from '../../helpers/data/TaskData';
+import { addTask, updateTask } from '../../helpers/data/TaskData';
 
 const TaskForm = ({
   user,
@@ -60,7 +60,7 @@ const TaskForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskObj.firebaseKey) {
-      console.warn('update task', taskObj);
+      updateTask(taskObj).then(setTasks);
     } else {
       addTask(taskObj).then(setTasks);
     }

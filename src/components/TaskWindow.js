@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TaskWindow({
-  user, tasks, modalStatus, setModalStatus
+  user, tasks, modalStatus, setModalStatus, modalToggle
 }) {
   const classes = useStyles();
 
@@ -43,6 +43,7 @@ export default function TaskWindow({
             user={user}
             modalStatus={modalStatus}
             setModalStatus={setModalStatus}
+            modalToggle={modalToggle}
           />
         ))}
       </Paper>
@@ -54,5 +55,6 @@ TaskWindow.propTypes = {
   user: PropTypes.any,
   tasks: PropTypes.array,
   modalStatus: PropTypes.bool,
-  setModalStatus: PropTypes.func
+  setModalStatus: PropTypes.func,
+  modalToggle: PropTypes.func
 };
