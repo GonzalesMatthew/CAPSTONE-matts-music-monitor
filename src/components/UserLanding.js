@@ -54,7 +54,14 @@ export default function UserLanding({
                 addTask...
               </Button>
               {/* my modal component is here: ModalContainer */}
-              <ModalContainer user={user} formName={'addTask...'} setTasks={setTasks} modalStatus={modalStatus} modalToggle={modalToggle}/>
+              <ModalContainer
+                id='addModal'
+                user={user}
+                formName={'addTask...'}
+                setTasks={setTasks}
+                modalStatus={modalStatus}
+                modalToggle={modalToggle}
+              />
             </Div>
           </div>
         </div>

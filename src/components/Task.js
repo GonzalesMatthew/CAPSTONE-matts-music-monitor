@@ -59,8 +59,8 @@ export default function Task({ ...rest }) {
         /></Button>
       </div>
       <ModalContainer
+        id={rest.task.firebaseKey}
         user={rest.user}
-        task={rest.task}
         day={rest.task.day}
         description={rest.task.description}
         duration={rest.task.duration}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import UserLanding from '../components/UserLanding';
 import TaskWindow from '../components/TaskWindow';
@@ -9,16 +9,14 @@ export default function UserProfile({
 }) {
   const [modalStatus, setModalStatus] = useState(false);
   const modalToggle = () => setModalStatus(!modalStatus);
-  useEffect(() => {
-    setModalStatus(false);
-  }, []);
+
   return (
     <>
       <UserLanding
         user={user}
         setTasks={setTasks}
         modalStatus={modalStatus}
-        setModalStatus={setModalStatus}
+        // setModalStatus={setModalStatus}
         modalToggle={modalToggle}
       />
       <TaskWindow

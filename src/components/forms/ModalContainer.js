@@ -15,10 +15,11 @@ import TaskForm from './TaskForm';
 // }));
 
 const ModalContainer = ({
-  task, user, formName, setTasks, modalStatus, modalToggle, ...rest
+  id, task, user, formName, setTasks, modalStatus, modalToggle, ...rest
 }) => (
   // const classes = useStyles();
     <Modal
+      id={id}
       // dialogClassName={classes.modal}
       size='md'
       isOpen={modalStatus} toggle={modalToggle}
@@ -60,6 +61,7 @@ const ModalContainer = ({
 export default ModalContainer;
 
 ModalContainer.propTypes = {
+  id: PropTypes.string,
   task: PropTypes.object,
   formName: PropTypes.string,
   modalStatus: PropTypes.bool,
