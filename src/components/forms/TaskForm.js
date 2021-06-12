@@ -12,29 +12,29 @@ import { getInstruments } from '../../helpers/data/InstrumentData';
 import { addTask, updateTask } from '../../helpers/data/TaskData';
 
 const TaskForm = ({
-  task,
+  // task,
   user,
-  // day,
-  // description,
-  // duration,
-  // firebaseKey,
-  // instrumentId,
-  // reviewNotes,
-  // subTopicId,
-  // topicId,
+  day,
+  description,
+  duration,
+  firebaseKey,
+  instrumentId,
+  reviewNotes,
+  subTopicId,
+  topicId,
   setTasks,
   modalToggle,
 }) => {
   // define task object
   const [taskObj, setTaskObj] = useState({
-    day: task.day || '',
-    description: task.description || '',
-    duration: task.duration || '',
-    firebaseKey: task.firebaseKey || null,
-    instrumentId: task.instrumentId || '',
-    reviewNotes: task.reviewNotes || '',
-    subTopicId: task.subTopicId || '',
-    topicId: task.topicId || '',
+    day: day || '',
+    description: description || '',
+    duration: duration || '',
+    firebaseKey: firebaseKey || null,
+    instrumentId: instrumentId || '',
+    reviewNotes: reviewNotes || '',
+    subTopicId: subTopicId || '',
+    topicId: topicId || '',
     uid: user.uid || ''
   });
 
@@ -78,9 +78,9 @@ const TaskForm = ({
           id='duration'
           type="number"
           name="duration"
-          placeholder="0"
+          placeholder=''
           min='0'
-          value={task.duration}
+          value={taskObj.duration}
           onChange={handleInputChange}/>
       </FormGroup>
       {/* topicId */}
@@ -91,7 +91,7 @@ const TaskForm = ({
           type="select"
           name="topicId"
           placeholder=""
-          value={task.topicId}
+          value={taskObj.topicId}
           onChange={handleInputChange}
         >
           <option value=''>selectTopic...</option>
@@ -111,7 +111,7 @@ const TaskForm = ({
           type="select"
           name="subTopicId"
           placeholder=""
-          value={task.subTopicId}
+          value={taskObj.subTopicId}
           onChange={handleInputChange}
         >
           <option value=''>selectSubTopic...</option>
@@ -132,7 +132,7 @@ const TaskForm = ({
           type="select"
           name="instrumentId"
           placeholder=""
-          value={task.instrumentId}
+          value={taskObj.instrumentId}
           onChange={handleInputChange}
         >
           <option value=''>selectInstrument...</option>
@@ -153,7 +153,7 @@ const TaskForm = ({
           type="date"
           name="day"
           placeholder=""
-          value={task.day}
+          value={taskObj.day}
           onChange={handleInputChange}/>
       </FormGroup>
       {/* description */}
@@ -164,7 +164,7 @@ const TaskForm = ({
           type="string"
           name="description"
           placeholder="enterDescription..."
-          value={task.description}
+          value={taskObj.description}
           onChange={handleInputChange}/>
       </FormGroup>
       {/* reviewNotes */}
@@ -175,7 +175,7 @@ const TaskForm = ({
           type="string"
           name="reviewNotes"
           placeholder="enterReviewNotes..."
-          value={task.reviewNotes}
+          value={taskObj.reviewNotes}
           onChange={handleInputChange}/>
       </FormGroup>
 {/*
@@ -237,16 +237,16 @@ const TaskForm = ({
 };
 
 TaskForm.propTypes = {
-  task: PropTypes.object,
+  // task: PropTypes.object,
   user: PropTypes.any,
-  // day: PropTypes.instanceOf(Date),
-  // description: PropTypes.string,
-  // duration: PropTypes.number,
-  // firebaseKey: PropTypes.string,
-  // instrumentId: PropTypes.string,
-  // reviewNotes: PropTypes.string,
-  // subTopicId: PropTypes.string,
-  // topicId: PropTypes.string,
+  day: PropTypes.instanceOf(Date),
+  description: PropTypes.string,
+  duration: PropTypes.number,
+  firebaseKey: PropTypes.string,
+  instrumentId: PropTypes.string,
+  reviewNotes: PropTypes.string,
+  subTopicId: PropTypes.string,
+  topicId: PropTypes.string,
   setTasks: PropTypes.func,
   modalToggle: PropTypes.func,
 };

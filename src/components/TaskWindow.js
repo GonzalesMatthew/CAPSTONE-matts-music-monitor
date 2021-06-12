@@ -33,6 +33,14 @@ export default function TaskWindow({
           <Task
             key={task.firebaseKey}
             task={task}
+            // day={task.day}
+            // description={task.description}
+            // duration={task.duration}
+            // firebaseKey={task.firebaseKey}
+            // instrumentId={task.instrumentId}
+            // reviewNotes={task.reviewNotes}
+            // subTopicId={task.subTopicId}
+            // topicId={task.topicId}
             user={rest.user}
             tasks={rest.tasks}
             setTasks={rest.setTasks}

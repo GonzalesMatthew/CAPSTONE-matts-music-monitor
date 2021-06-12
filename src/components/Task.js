@@ -33,21 +33,6 @@ export default function Task({ ...rest }) {
     getInstrument(rest.task.instrumentId).then(setInstrument);
   }, []);
 
-  // I can likely delete this
-  // const handleClick = (type) => {
-  //   switch (type) {
-  //     case 'delete':
-  //       deleteTask(firebaseKey)
-  //         .then(setTasks);
-  //       break;
-  //     case 'view':
-  //       updateTask((prevState) => !prevState);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
-
   return (
     <Container className={classes.task}>
       <div className='d-flex flex-row'>
@@ -73,7 +58,22 @@ export default function Task({ ...rest }) {
         }><img alt='delete button' src={images.xIcon}
         /></Button>
       </div>
-      <ModalContainer user={rest.user} formName={'updateTask...'} setTasks={rest.setTasks} modalStatus={rest.modalStatus} modalToggle={rest.modalToggle} task={rest.task}/>
+      <ModalContainer
+        user={rest.user}
+        task={rest.task}
+        day={rest.task.day}
+        description={rest.task.description}
+        duration={rest.task.duration}
+        firebaseKey={rest.task.firebaseKey}
+        instrumentId={rest.task.instrumentId}
+        reviewNotes={rest.task.reviewNotes}
+        subTopicId={rest.task.subTopicId}
+        topicId={rest.task.topicId}
+        formName={'updateTask...'}
+        setTasks={rest.setTasks}
+        modalStatus={rest.modalStatus}
+        modalToggle={rest.modalToggle}
+      />
     </Container>
   );
 }
@@ -81,8 +81,14 @@ export default function Task({ ...rest }) {
 Task.propTypes = {
   task: PropTypes.object,
   // following two live in task
+  day: PropTypes.instanceOf(Date),
+  description: PropTypes.string,
+  duration: PropTypes.number,
   firebaseKey: PropTypes.string,
   instrumentId: PropTypes.string,
+  reviewNotes: PropTypes.string,
+  subTopicId: PropTypes.string,
+  topicId: PropTypes.string,
 
   user: PropTypes.any,
   setTasks: PropTypes.func,

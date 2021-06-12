@@ -15,7 +15,7 @@ import TaskForm from './TaskForm';
 // }));
 
 const ModalContainer = ({
-  task, user, formName, setTasks, modalStatus, modalToggle
+  task, user, formName, setTasks, modalStatus, modalToggle, ...rest
 }) => (
   // const classes = useStyles();
     <Modal
@@ -28,6 +28,14 @@ const ModalContainer = ({
         <TaskForm
           task={task}
           user={user}
+          day={rest.day}
+          description={rest.description}
+          duration={rest.duration}
+          firebaseKey={rest.firebaseKey}
+          instrumentId={rest.instrumentId}
+          reviewNotes={rest.reviewNotes}
+          subTopicId={rest.subTopicId}
+          topicId={rest.topicId}
           setTasks={setTasks}
           modalToggle={modalToggle}
         />
@@ -57,5 +65,13 @@ ModalContainer.propTypes = {
   modalStatus: PropTypes.bool,
   modalToggle: PropTypes.func,
   setTasks: PropTypes.func,
-  user: PropTypes.any
+  user: PropTypes.any,
+  day: PropTypes.instanceOf(Date),
+  description: PropTypes.string,
+  duration: PropTypes.number,
+  firebaseKey: PropTypes.string,
+  instrumentId: PropTypes.string,
+  reviewNotes: PropTypes.string,
+  subTopicId: PropTypes.string,
+  topicId: PropTypes.string,
 };
