@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import UserLanding from '../components/UserLanding';
 import TaskWindow from '../components/TaskWindow';
@@ -7,25 +7,22 @@ import ContributionGraph from '../components/ContributionGraph';
 export default function UserProfile({
   user, tasks, setTasks
 }) {
-  const [modalStatus, setModalStatus] = useState(false);
-  const modalToggle = () => setModalStatus(!modalStatus);
-
   return (
     <>
       <UserLanding
         user={user}
         setTasks={setTasks}
-        modalStatus={modalStatus}
+        // modalStatus={modalStatus}
         // setModalStatus={setModalStatus}
-        modalToggle={modalToggle}
+        // modalToggle={modalToggle}
       />
       <TaskWindow
         user={user}
         tasks={tasks}
         setTasks={setTasks}
-        modalStatus={modalStatus}
-        setModalStatus={setModalStatus}
-        modalToggle={modalToggle}
+        // modalStatus={modalStatus}
+        // setModalStatus={setModalStatus}
+        // modalToggle={modalToggle}
       />
       <ContributionGraph user={user}/>
     </>

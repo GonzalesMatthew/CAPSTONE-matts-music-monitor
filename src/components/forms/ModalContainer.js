@@ -68,7 +68,7 @@ ModalContainer.propTypes = {
   modalToggle: PropTypes.func,
   setTasks: PropTypes.func,
   user: PropTypes.any,
-  day: PropTypes.instanceOf(Date),
+  day: PropTypes.string,
   description: PropTypes.string,
   duration: PropTypes.number,
   firebaseKey: PropTypes.string,

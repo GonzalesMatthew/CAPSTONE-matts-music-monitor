@@ -36,9 +36,6 @@ export default function TaskWindow({
             user={rest.user}
             tasks={rest.tasks}
             setTasks={rest.setTasks}
-            modalStatus={rest.modalStatus}
-            setModalStatus={rest.setModalStatus}
-            modalToggle={rest.modalToggle}
           />
         ))}
       </Paper>
@@ -50,7 +47,4 @@ TaskWindow.propTypes = {
   user: PropTypes.any,
   tasks: PropTypes.array,
   setTasks: PropTypes.func,
-  modalStatus: PropTypes.bool,
-  setModalStatus: PropTypes.func,
-  modalToggle: PropTypes.func
 };
