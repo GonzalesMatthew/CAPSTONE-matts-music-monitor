@@ -33,6 +33,11 @@ export default function Task({ ...rest }) {
     getInstrument(rest.task.instrumentId).then(setInstrument);
   }, []);
 
+  const [updateTaskModalStatus, setUpdateModalStatus] = useState(false);
+  const toggleUpdateModal = () => {
+    setUpdateModalStatus(!updateTaskModalStatus);
+  };
+
   return (
     <Container className={classes.task}>
       <div className='d-flex flex-row'>
@@ -47,7 +52,7 @@ export default function Task({ ...rest }) {
           <img className={classes.image} alt={`Icon image of ${instrument.instrument}`} src={instrument.instrumentIcon}/>
         </Button>
         {/* view/edit button */}
-        <Button color='dark' onClick={rest.modalToggle}><img alt='view button' src={images.eyeIcon}/></Button>
+        <Button color='dark' onClick={toggleUpdateModal}><img alt='view button' src={images.eyeIcon}/></Button>
         {/* delete button */}
         <Button color='dark' onClick={() => {
           // eslint-disable-next-line no-alert
@@ -71,8 +76,8 @@ export default function Task({ ...rest }) {
         topicId={rest.task.topicId}
         formName={'updateTask...'}
         setTasks={rest.setTasks}
-        modalStatus={rest.modalStatus}
-        modalToggle={rest.modalToggle}
+        modalStatus={updateTaskModalStatus}
+        modalToggle={toggleUpdateModal}
       />
     </Container>
   );
@@ -81,7 +86,7 @@ export default function Task({ ...rest }) {
 Task.propTypes = {
   task: PropTypes.object,
   // following two live in task
-  day: PropTypes.instanceOf(Date),
+  day: PropTypes.string,
   description: PropTypes.string,
   duration: PropTypes.number,
   firebaseKey: PropTypes.string,

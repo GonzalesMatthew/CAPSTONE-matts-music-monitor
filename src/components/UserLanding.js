@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
   makeStyles, Avatar, Paper, Typography, Container
@@ -29,9 +29,16 @@ const Div = styled.div`
   align-items: center;
 `;
 export default function UserLanding({
-  user, setTasks, modalStatus, modalToggle
+  user, setTasks
+  // , modalStatus, modalToggle
 }) {
+  // useStyles
   const classes = useStyles();
+
+  // define modal status/toggle
+  const [modalStatus, setModalStatus] = useState(false);
+  const modalToggle = () => setModalStatus(!modalStatus);
+
   return (
     <Container>
       <Paper className={classes.paper} elevation={6}>
@@ -72,7 +79,5 @@ export default function UserLanding({
 
 UserLanding.propTypes = {
   user: PropTypes.any.isRequired,
-  modalStatus: PropTypes.bool,
   setTasks: PropTypes.func,
-  modalToggle: PropTypes.func,
 };
