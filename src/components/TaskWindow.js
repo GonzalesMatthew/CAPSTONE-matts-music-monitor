@@ -22,27 +22,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TaskWindow({
-  user, tasks, modalStatus, setModalStatus
+  ...rest
 }) {
   const classes = useStyles();
 
   return (
     <Container>
       <Paper className={classes.paper} elevation={6}>
-        {tasks.map((task) => (
+        {rest.tasks.map((task) => (
           <Task
             key={task.firebaseKey}
-            day={task.day}
-            description={task.description}
-            duration={task.duration}
-            firebaseKey={task.firebaseKey}
-            instrumentId={task.instrumentId}
-            reviewNotes={task.reviewNotes}
-            subTopicId={task.subTopicId}
-            topicId={task.topicId}
-            user={user}
-            modalStatus={modalStatus}
-            setModalStatus={setModalStatus}
+            task={task}
+            user={rest.user}
+            tasks={rest.tasks}
+            setTasks={rest.setTasks}
+            modalStatus={rest.modalStatus}
+            setModalStatus={rest.setModalStatus}
+            modalToggle={rest.modalToggle}
           />
         ))}
       </Paper>
@@ -53,6 +49,8 @@ export default function TaskWindow({
 TaskWindow.propTypes = {
   user: PropTypes.any,
   tasks: PropTypes.array,
+  setTasks: PropTypes.func,
   modalStatus: PropTypes.bool,
-  setModalStatus: PropTypes.func
+  setModalStatus: PropTypes.func,
+  modalToggle: PropTypes.func
 };

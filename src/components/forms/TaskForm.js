@@ -9,9 +9,10 @@ import {
 } from 'reactstrap';
 import { getTopics } from '../../helpers/data/TopicData';
 import { getInstruments } from '../../helpers/data/InstrumentData';
-import { addTask } from '../../helpers/data/TaskData';
+import { addTask, updateTask } from '../../helpers/data/TaskData';
 
 const TaskForm = ({
+  // task,
   user,
   day,
   description,
@@ -60,7 +61,7 @@ const TaskForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskObj.firebaseKey) {
-      console.warn('update task', taskObj);
+      updateTask(taskObj).then(setTasks);
     } else {
       addTask(taskObj).then(setTasks);
     }
@@ -70,17 +71,19 @@ const TaskForm = ({
     <Form
       autoComplete='off'
       onSubmit={handleSubmit}>
+      {/* duration */}
       <FormGroup>
         <Label for="duration">duration...</Label>
         <Input
           id='duration'
           type="number"
           name="duration"
-          placeholder="0"
+          placeholder=''
           min='0'
           value={taskObj.duration}
           onChange={handleInputChange}/>
       </FormGroup>
+      {/* topicId */}
       <FormGroup>
         <Label for="topicId">topic...</Label>
         <Input
@@ -88,6 +91,7 @@ const TaskForm = ({
           type="select"
           name="topicId"
           placeholder=""
+          value={taskObj.topicId}
           onChange={handleInputChange}
         >
           <option value=''>selectTopic...</option>
@@ -99,6 +103,7 @@ const TaskForm = ({
           ))}
         </Input>
       </FormGroup>
+      {/* subTopicId */}
       <FormGroup>
         <Label for="subTopicId">subTopic...</Label>
         <Input
@@ -106,6 +111,7 @@ const TaskForm = ({
           type="select"
           name="subTopicId"
           placeholder=""
+          value={taskObj.subTopicId}
           onChange={handleInputChange}
         >
           <option value=''>selectSubTopic...</option>
@@ -118,6 +124,7 @@ const TaskForm = ({
           ))}
         </Input>
       </FormGroup>
+      {/* instrumentId */}
       <FormGroup>
         <Label for="instrumentId">instrument...</Label>
         <Input
@@ -125,6 +132,7 @@ const TaskForm = ({
           type="select"
           name="instrumentId"
           placeholder=""
+          value={taskObj.instrumentId}
           onChange={handleInputChange}
         >
           <option value=''>selectInstrument...</option>
@@ -137,6 +145,7 @@ const TaskForm = ({
           </Input>
       </FormGroup>
       <br/>
+      {/* day */}
       <FormGroup>
         <Label for="day">date...</Label>
         <Input
@@ -147,6 +156,7 @@ const TaskForm = ({
           value={taskObj.day}
           onChange={handleInputChange}/>
       </FormGroup>
+      {/* description */}
       <FormGroup>
         <Label for="description">description...</Label>
         <Input
@@ -157,6 +167,7 @@ const TaskForm = ({
           value={taskObj.description}
           onChange={handleInputChange}/>
       </FormGroup>
+      {/* reviewNotes */}
       <FormGroup>
         <Label for="reviewNotes">reviewNotes...</Label>
         <Input
@@ -226,6 +237,7 @@ const TaskForm = ({
 };
 
 TaskForm.propTypes = {
+  // task: PropTypes.object,
   user: PropTypes.any,
   day: PropTypes.instanceOf(Date),
   description: PropTypes.string,

@@ -15,10 +15,11 @@ import TaskForm from './TaskForm';
 // }));
 
 const ModalContainer = ({
-  formName, modalStatus, modalToggle, setTasks, user
+  id, task, user, formName, setTasks, modalStatus, modalToggle, ...rest
 }) => (
   // const classes = useStyles();
     <Modal
+      id={id}
       // dialogClassName={classes.modal}
       size='md'
       isOpen={modalStatus} toggle={modalToggle}
@@ -26,7 +27,16 @@ const ModalContainer = ({
       <ModalHeader toggle={modalToggle}>{formName}</ModalHeader>
       <ModalBody>
         <TaskForm
+          task={task}
           user={user}
+          day={rest.day}
+          description={rest.description}
+          duration={rest.duration}
+          firebaseKey={rest.firebaseKey}
+          instrumentId={rest.instrumentId}
+          reviewNotes={rest.reviewNotes}
+          subTopicId={rest.subTopicId}
+          topicId={rest.topicId}
           setTasks={setTasks}
           modalToggle={modalToggle}
         />
@@ -51,9 +61,19 @@ const ModalContainer = ({
 export default ModalContainer;
 
 ModalContainer.propTypes = {
+  id: PropTypes.string,
+  task: PropTypes.object,
   formName: PropTypes.string,
   modalStatus: PropTypes.bool,
   modalToggle: PropTypes.func,
   setTasks: PropTypes.func,
-  user: PropTypes.any
+  user: PropTypes.any,
+  day: PropTypes.instanceOf(Date),
+  description: PropTypes.string,
+  duration: PropTypes.number,
+  firebaseKey: PropTypes.string,
+  instrumentId: PropTypes.string,
+  reviewNotes: PropTypes.string,
+  subTopicId: PropTypes.string,
+  topicId: PropTypes.string,
 };
