@@ -2,6 +2,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import {
   Form, FormGroup,
@@ -14,6 +15,9 @@ import { addTask, updateTask } from '../../helpers/data/TaskData';
 const TaskForm = ({
   // task,
   user,
+  setTasks,
+  modalToggle,
+  // task fields:
   day,
   description,
   duration,
@@ -22,14 +26,13 @@ const TaskForm = ({
   reviewNotes,
   subTopicId,
   topicId,
-  setTasks,
-  modalToggle,
+  // tascam fields:
 }) => {
   // define task object
   const [taskObj, setTaskObj] = useState({
-    day: day || '',
+    day: moment(day).format('YYYY-MM-DD') || '',
     description: description || '',
-    duration: duration || '',
+    duration: Number(duration) || '',
     firebaseKey: firebaseKey || null,
     instrumentId: instrumentId || '',
     reviewNotes: reviewNotes || '',
@@ -239,7 +242,7 @@ const TaskForm = ({
 TaskForm.propTypes = {
   // task: PropTypes.object,
   user: PropTypes.any,
-  day: PropTypes.instanceOf(Date),
+  day: PropTypes.string,
   description: PropTypes.string,
   duration: PropTypes.number,
   firebaseKey: PropTypes.string,
