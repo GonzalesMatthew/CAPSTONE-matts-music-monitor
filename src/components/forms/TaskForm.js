@@ -11,9 +11,10 @@ import {
 import { getTopics } from '../../helpers/data/TopicData';
 import { getInstruments } from '../../helpers/data/InstrumentData';
 import { addTask, updateTask } from '../../helpers/data/TaskData';
+// import { addTascam } from '../../helpers/data/TascamData';
+// import { addMemo } from '../../helpers/data/MemoData';
 
 const TaskForm = ({
-  // task,
   user,
   setTasks,
   modalToggle,
@@ -26,7 +27,18 @@ const TaskForm = ({
   reviewNotes,
   subTopicId,
   topicId,
+  // memo fields:
+  memo1,
+  time1,
+  memo2,
+  time2,
+  memo3,
+  time3,
   // tascam fields:
+  memoId1,
+  memoId2,
+  memoId3,
+  track,
 }) => {
   // define task object
   const [taskObj, setTaskObj] = useState({
@@ -41,6 +53,34 @@ const TaskForm = ({
     uid: user.uid || ''
   });
 
+  // define memo1 object
+  const [memo1Obj, setMemo1Obj] = useState({
+    memo: memo1 || '',
+    // time: moment(time1).format('hh:mm:ss') || '',
+    time: time1 || '',
+  });
+  // define memo2 object
+  const [memo2Obj, setMemo2Obj] = useState({
+    memo: memo2 || '',
+    // time: moment(time2).format('hh:mm:ss') || '',
+    time: time2 || '',
+  });
+  // define memo2 object
+  const [memo3Obj, setMemo3Obj] = useState({
+    memo: memo3 || '',
+    // time: moment(time3).format('hh:mm:ss') || '',
+    time: time3 || '',
+  });
+
+  // define tascam object
+  const [tascamObj, setTascamObj] = useState({
+    memoId1: memoId1 || '',
+    memoId2: memoId2 || '',
+    memoId3: memoId3 || '',
+    taskId: firebaseKey || '',
+    track: Number(track) || ''
+  });
+
   // hooks for topic and instrument data
   const [topicList, setTopicList] = useState([]);
   const [subTopicList, setSubTopicList] = useState([]);
@@ -53,10 +93,42 @@ const TaskForm = ({
   }, []);
 
   // handle input changes
+  // for tasks:
   const handleInputChange = (e) => {
     setTaskObj((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.name === 'duration' ? Number(e.target.value) : e.target.value,
+    }));
+  };
+  // for memo1:
+  const handleMemo1Change = (e) => {
+    setMemo1Obj((prevState) => ({
+      ...prevState,
+      // [e.target.name]: e.target.name === 'time' ? Number(e.target.value) : e.target.value,
+      [e.target.name]: e.target.value
+    }));
+  };
+  // for memo2:
+  const handleMemo2Change = (e) => {
+    setMemo2Obj((prevState) => ({
+      ...prevState,
+      // [e.target.name]: e.target.name === 'time' ? Number(e.target.value) : e.target.value,
+      [e.target.name]: e.target.value
+    }));
+  };
+  // for memo3:
+  const handleMemo3Change = (e) => {
+    setMemo3Obj((prevState) => ({
+      ...prevState,
+      // [e.target.name]: e.target.name === 'time' ? Number(e.target.value) : e.target.value,
+      [e.target.name]: e.target.value
+    }));
+  };
+  // for tascams:
+  const handleTascamChange = (e) => {
+    setTascamObj((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.name === 'track' ? Number(e.target.value) : e.target.value,
     }));
   };
 
@@ -66,6 +138,14 @@ const TaskForm = ({
     if (taskObj.firebaseKey) {
       updateTask(taskObj).then(setTasks);
     } else {
+      console.warn(memo1Obj);
+      console.warn(memo2Obj);
+      console.warn(memo3Obj);
+      console.warn(tascamObj);
+      // addMemo(memo1Obj);
+      // addMemo(memo2Obj);
+      // addMemo(memo3Obj);
+      // addTascam(tascamObj);
       addTask(taskObj).then(setTasks);
     }
   };
@@ -181,67 +261,94 @@ const TaskForm = ({
           value={taskObj.reviewNotes}
           onChange={handleInputChange}/>
       </FormGroup>
-{/*
-      <Label>tascamTrack:</Label>
+
+      {/* Tascam fields */}
+
+      <Label>tascam:</Label>
+      {/* track */}
       <FormGroup>
-        <Label for="memo1">memo1...</Label>
+        <Label for="track">track...</Label>
         <Input
           type="string"
-          name="memo1"
+          name="track"
           placeholder=""
-          // value={taskObj.memo1}
-          onChange={handleInputChange}/>
+          value={tascamObj.track}
+          onChange={handleTascamChange}/>
       </FormGroup>
+
+      {/* Memo fields */}
+
+      {/* memo1 */}
       <FormGroup>
-        <Label for="memoTime1">recordingTimestamp1...</Label>
+        <Label>memo1...</Label>
         <Input
           type="string"
-          name="memoTime1"
+          name="memo"
           placeholder=""
-          onChange={handleInputChange}/>
+          value={memo1Obj.memo}
+          onChange={handleMemo1Change}/>
       </FormGroup>
+      {/* memoTime1 */}
       <FormGroup>
-        <Label for="memo2">memo2...</Label>
+        <Label>recordingTimestamp1...</Label>
         <Input
           type="string"
-          name="memo2"
-          placeholder=""
-          onChange={handleInputChange}/>
+          name="time"
+          placeholder='mm:ss'
+          value={memo1Obj.time}
+          onChange={handleMemo1Change}/>
       </FormGroup>
+      {/* memo2 */}
       <FormGroup>
-        <Label for="memoTime2">recordingTimestamp2...</Label>
+        <Label>memo2...</Label>
         <Input
           type="string"
-          name="memoTime2"
+          name="memo"
           placeholder=""
-          onChange={handleInputChange}/>
+          value={memo2Obj.memo}
+          onChange={handleMemo2Change}/>
       </FormGroup>
+      {/* memoTime2 */}
       <FormGroup>
-        <Label for="memo3">memo3...</Label>
+        <Label>recordingTimestamp1...</Label>
         <Input
           type="string"
-          name="memo3"
-          placeholder=""
-          onChange={handleInputChange}/>
+          name="time"
+          placeholder='mm:ss'
+          value={memo2Obj.time}
+          onChange={handleMemo2Change}/>
       </FormGroup>
+      {/* memo3 */}
       <FormGroup>
-        <Label for="memoTime3">recordingTimestamp3...</Label>
+        <Label>memo1...</Label>
         <Input
           type="string"
-          name="memoTime3"
-          placeholder=""
-          onChange={handleInputChange}/>
-      </FormGroup> */}
-      {/* <Button type='submit'color="dark">Submit...</Button> */}
-      <Button type='submit'color="dark">Submit...</Button>
-      <Button color="dark" onClick={modalToggle}>Cancel...</Button>
+          name="memo"
+          placeholder='mm:ss'
+          value={memo3Obj.memo}
+          onChange={handleMemo3Change}/>
+      </FormGroup>
+      {/* memoTime3 */}
+      <FormGroup>
+        <Label>recordingTimestamp1...</Label>
+        <Input
+          type="string"
+          name="time"
+          placeholder='hh:mm:ss'
+          value={memo3Obj.time}
+          onChange={handleMemo3Change}/>
+      </FormGroup>
+      <Button type='submit'color="dark">submit...</Button>
+      <Button color="dark" onClick={modalToggle}>cancel...</Button>
     </Form>
   );
 };
 
 TaskForm.propTypes = {
-  // task: PropTypes.object,
   user: PropTypes.any,
+  setTasks: PropTypes.func,
+  modalToggle: PropTypes.func,
+  // task fields
   day: PropTypes.string,
   description: PropTypes.string,
   duration: PropTypes.number,
@@ -250,8 +357,18 @@ TaskForm.propTypes = {
   reviewNotes: PropTypes.string,
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
-  setTasks: PropTypes.func,
-  modalToggle: PropTypes.func,
+  // memo fields
+  memo1: PropTypes.string,
+  time1: PropTypes.string,
+  memo2: PropTypes.string,
+  time2: PropTypes.string,
+  memo3: PropTypes.string,
+  time3: PropTypes.string,
+  // tascam fields
+  memoId1: PropTypes.string,
+  memoId2: PropTypes.string,
+  memoId3: PropTypes.string,
+  track: PropTypes.string,
 };
 
 export default TaskForm;
