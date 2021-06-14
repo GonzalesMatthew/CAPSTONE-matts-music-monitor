@@ -10,9 +10,8 @@ import {
 } from 'reactstrap';
 import { getTopics } from '../../helpers/data/TopicData';
 import { getInstruments } from '../../helpers/data/InstrumentData';
-import { addTask, updateTask } from '../../helpers/data/TaskData';
-// import { addTascam } from '../../helpers/data/TascamData';
-// import { addMemo } from '../../helpers/data/MemoData';
+import { updateTask } from '../../helpers/data/TaskData';
+import { addTascam } from '../../helpers/data/TascamData';
 
 const TaskForm = ({
   user,
@@ -138,15 +137,15 @@ const TaskForm = ({
     if (taskObj.firebaseKey) {
       updateTask(taskObj).then(setTasks);
     } else {
-      console.warn(memo1Obj);
-      console.warn(memo2Obj);
-      console.warn(memo3Obj);
-      console.warn(tascamObj);
+      // console.warn(memo1Obj);
+      // console.warn(memo2Obj);
+      // console.warn(memo3Obj);
+      // console.warn(tascamObj);
       // addMemo(memo1Obj);
       // addMemo(memo2Obj);
       // addMemo(memo3Obj);
-      // addTascam(tascamObj);
-      addTask(taskObj).then(setTasks);
+      addTascam(taskObj, memo1Obj, memo2Obj, memo3Obj, tascamObj.track).then(setTasks);
+      // addTask(taskObj).then(setTasks);
     }
   };
 
@@ -324,7 +323,7 @@ const TaskForm = ({
         <Input
           type="string"
           name="memo"
-          placeholder='mm:ss'
+          placeholder=''
           value={memo3Obj.memo}
           onChange={handleMemo3Change}/>
       </FormGroup>
@@ -334,7 +333,7 @@ const TaskForm = ({
         <Input
           type="string"
           name="time"
-          placeholder='hh:mm:ss'
+          placeholder='mm:ss'
           value={memo3Obj.time}
           onChange={handleMemo3Change}/>
       </FormGroup>
