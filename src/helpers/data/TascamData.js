@@ -11,45 +11,6 @@ const getTascam = (taskId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-// addTascam needs to be a Promise.all where it gathers MemoId 1/2/3 and TaskId
-// old addTascam for reference:
-// const addTascam = (tascamObj) => new Promise((reject) => {
-//   axios.post(`${dbUrl}/tascam.json`, tascamObj)
-//     .then((response) => {
-//       const fbKey = { firebaseKey: response.data.name };
-//       axios.patch(`${dbUrl}/tascam/${response.data.name}.json`, fbKey);
-//     })
-//     .catch((error) => reject(error));
-// });
-// const getSingleAuthor = (authorId) => new Promise((resolve, reject) => {
-//   axios.get(`${dbUrl}/authors/${authorId}.json`)
-//     .then((response) => resolve(response.data))
-//     .catch((error) => reject(error));
-// });
-// const getAuthorBooks = (authorId) => new Promise((resolve, reject) => {
-//   axios.get(`${dbUrl}/books.json?orderBy="author_id"&equalTo="${authorId}"`)
-//     .then((response) => resolve(Object.values(response.data)))
-//     .catch((error) => reject(error));
-// });
-// const addTask = (taskObj) => new Promise((resolve, reject) => {
-//   axios.post(`${dbUrl}/task.json`, taskObj)
-//     .then((response) => {
-//       const fbKey = { firebaseKey: response.data.name };
-//       axios.patch(`${dbUrl}/task/${response.data.name}.json`, fbKey);
-//     }).then((response) => resolve(response.data))
-//     .catch((error) => reject(error));
-//     });
-
-// getTasks(taskObj.uid).then((taskArray) => resolve(taskArray));
-// const addMemo = (memoObj) => new Promise((resolve, reject) => {
-//   axios.post(`${dbUrl}/memo.json`, memoObj)
-//     .then((response) => {
-//       const fbKey = { firebaseKey: response.data.name };
-//       axios.patch(`${dbUrl}/memo/${response.data.name}.json`, fbKey);
-//     }).then((response) => resolve(response.data))
-//     .catch((error) => reject(error));
-// });
-
 const addTascam = (taskObj, memo1Obj, memo2Obj, memo3Obj, track) => new Promise((resolve, reject) => {
   const task = addTask(taskObj);
   const memo1 = addMemo(memo1Obj);
@@ -77,12 +38,6 @@ const addTascam = (taskObj, memo1Obj, memo2Obj, memo3Obj, track) => new Promise(
     }).then(() => getTasks(taskObj.uid).then(resolve))
     .catch((error) => reject(error));
 });
-
-// const getTascams = () => new Promise((resolve, reject) => {
-//   axios.get(`${dbUrl}/tascam.json`)
-//     .then((response) => resolve(Object.values(response.data)))
-//     .catch((error) => reject(error));
-// });
 
 export {
   getTascam, addTascam
