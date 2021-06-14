@@ -12,17 +12,11 @@ export default function UserProfile({
       <UserLanding
         user={user}
         setTasks={setTasks}
-        // modalStatus={modalStatus}
-        // setModalStatus={setModalStatus}
-        // modalToggle={modalToggle}
       />
       <TaskWindow
         user={user}
         tasks={tasks}
         setTasks={setTasks}
-        // modalStatus={modalStatus}
-        // setModalStatus={setModalStatus}
-        // modalToggle={modalToggle}
       />
       <ContributionGraph user={user}/>
     </>

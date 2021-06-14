@@ -14,9 +14,7 @@ const addTask = (taskObj) => new Promise((resolve, reject) => {
     .then((response) => {
       const fbKey = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/task/${response.data.name}.json`, fbKey)
-        .then(() => {
-          getTasks(taskObj.uid).then((taskArray) => resolve(taskArray));
-        });
+        .then((resp) => resolve(resp.data));
     })
     .catch((error) => reject(error));
 });

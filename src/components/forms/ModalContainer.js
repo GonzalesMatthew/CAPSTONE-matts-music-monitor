@@ -15,7 +15,7 @@ import TaskForm from './TaskForm';
 // }));
 
 const ModalContainer = ({
-  id, task, user, formName, setTasks, modalStatus, modalToggle, ...rest
+  id, user, formName, setTasks, modalStatus, modalToggle, ...rest
 }) => (
   // const classes = useStyles();
     <Modal
@@ -27,7 +27,6 @@ const ModalContainer = ({
       <ModalHeader toggle={modalToggle}>{formName}</ModalHeader>
       <ModalBody>
         <TaskForm
-          task={task}
           user={user}
           day={rest.day}
           description={rest.description}
@@ -62,7 +61,6 @@ export default ModalContainer;
 
 ModalContainer.propTypes = {
   id: PropTypes.string,
-  task: PropTypes.object,
   formName: PropTypes.string,
   modalStatus: PropTypes.bool,
   modalToggle: PropTypes.func,

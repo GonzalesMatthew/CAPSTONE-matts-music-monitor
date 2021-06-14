@@ -30,7 +30,6 @@ const Div = styled.div`
 `;
 export default function UserLanding({
   user, setTasks
-  // , modalStatus, modalToggle
 }) {
   // useStyles
   const classes = useStyles();
