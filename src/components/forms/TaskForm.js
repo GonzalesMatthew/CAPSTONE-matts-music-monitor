@@ -17,6 +17,7 @@ const TaskForm = ({
   user,
   setTasks,
   modalToggle,
+  tascam,
   // task fields:
   day,
   description,
@@ -34,10 +35,10 @@ const TaskForm = ({
   memo3,
   time3,
   // tascam fields:
-  memoId1,
-  memoId2,
-  memoId3,
-  track,
+  // memoId1,
+  // memoId2,
+  // memoId3,
+  // track,
 }) => {
   // define task object
   const [taskObj, setTaskObj] = useState({
@@ -70,11 +71,11 @@ const TaskForm = ({
 
   // define tascam object
   const [tascamObj, setTascamObj] = useState({
-    memoId1: memoId1 || '',
-    memoId2: memoId2 || '',
-    memoId3: memoId3 || '',
-    taskId: firebaseKey || '',
-    track: Number(track) || ''
+    memoId1: tascam.memoId1 || '',
+    memoId2: tascam.memoId2 || '',
+    memoId3: tascam.memoId3 || '',
+    taskId: tascam.taskId || '',
+    track: Number(tascam.track) || ''
   });
 
   // hooks for topic and instrument data
@@ -129,7 +130,7 @@ const TaskForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskObj.firebaseKey) {
-      updateTask(taskObj).then(setTasks);
+      updateTask(taskObj, memo1Obj, memo2Obj, memo3Obj, tascamObj).then(setTasks);
     } else {
       addTascam(taskObj, memo1Obj, memo2Obj, memo3Obj, tascamObj.track).then(setTasks);
     }
@@ -350,10 +351,7 @@ TaskForm.propTypes = {
   memo3: PropTypes.string,
   time3: PropTypes.string,
   // tascam fields
-  memoId1: PropTypes.string,
-  memoId2: PropTypes.string,
-  memoId3: PropTypes.string,
-  track: PropTypes.string,
+  tascam: PropTypes.object,
 };
 
 export default TaskForm;

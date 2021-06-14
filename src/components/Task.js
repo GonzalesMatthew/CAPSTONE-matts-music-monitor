@@ -7,7 +7,7 @@ import { getTopic } from '../helpers/data/TopicData';
 import { getInstrument } from '../helpers/data/InstrumentData';
 import ModalContainer from './forms/ModalContainer';
 import { deleteTask } from '../helpers/data/TaskData';
-// import { getTascam } from '../helpers/data/TascamData';
+import { getTascam } from '../helpers/data/TascamData';
 
 const useStyles = makeStyles(() => ({
   task: {
@@ -26,14 +26,14 @@ export default function Task({ ...rest }) {
   const [topic, setTopic] = useState([]);
   const [subTopic, setSubTopic] = useState([]);
   const [instrument, setInstrument] = useState([]);
-  // const [tascam, setTascam] = useState([]);
+  const [tascam, setTascam] = useState([]);
 
   // get topic, subTopic, and instrument names for updateForm
   useEffect(() => {
     getTopic(rest.task.topicId).then(setTopic);
     getTopic(rest.task.subTopicId).then(setSubTopic);
     getInstrument(rest.task.instrumentId).then(setInstrument);
-    // getTascam(rest.task.firebaseKey).then(setTascam);
+    getTascam(rest.task.firebaseKey).then(setTascam);
   }, []);
 
   const [updateTaskModalStatus, setUpdateModalStatus] = useState(false);
@@ -81,6 +81,7 @@ export default function Task({ ...rest }) {
         setTasks={rest.setTasks}
         modalStatus={updateTaskModalStatus}
         modalToggle={toggleUpdateModal}
+        tascam={tascam}
       />
     </Container>
   );
