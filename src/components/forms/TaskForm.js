@@ -55,19 +55,16 @@ const TaskForm = ({
   // define memo1 object
   const [memo1Obj, setMemo1Obj] = useState({
     memo: memo1 || '',
-    // time: moment(time1).format('hh:mm:ss') || '',
     time: time1 || '',
   });
   // define memo2 object
   const [memo2Obj, setMemo2Obj] = useState({
     memo: memo2 || '',
-    // time: moment(time2).format('hh:mm:ss') || '',
     time: time2 || '',
   });
   // define memo2 object
   const [memo3Obj, setMemo3Obj] = useState({
     memo: memo3 || '',
-    // time: moment(time3).format('hh:mm:ss') || '',
     time: time3 || '',
   });
 
@@ -103,7 +100,6 @@ const TaskForm = ({
   const handleMemo1Change = (e) => {
     setMemo1Obj((prevState) => ({
       ...prevState,
-      // [e.target.name]: e.target.name === 'time' ? Number(e.target.value) : e.target.value,
       [e.target.name]: e.target.value
     }));
   };
@@ -111,7 +107,6 @@ const TaskForm = ({
   const handleMemo2Change = (e) => {
     setMemo2Obj((prevState) => ({
       ...prevState,
-      // [e.target.name]: e.target.name === 'time' ? Number(e.target.value) : e.target.value,
       [e.target.name]: e.target.value
     }));
   };
@@ -119,7 +114,6 @@ const TaskForm = ({
   const handleMemo3Change = (e) => {
     setMemo3Obj((prevState) => ({
       ...prevState,
-      // [e.target.name]: e.target.name === 'time' ? Number(e.target.value) : e.target.value,
       [e.target.name]: e.target.value
     }));
   };
@@ -137,15 +131,7 @@ const TaskForm = ({
     if (taskObj.firebaseKey) {
       updateTask(taskObj).then(setTasks);
     } else {
-      // console.warn(memo1Obj);
-      // console.warn(memo2Obj);
-      // console.warn(memo3Obj);
-      // console.warn(tascamObj);
-      // addMemo(memo1Obj);
-      // addMemo(memo2Obj);
-      // addMemo(memo3Obj);
       addTascam(taskObj, memo1Obj, memo2Obj, memo3Obj, tascamObj.track).then(setTasks);
-      // addTask(taskObj).then(setTasks);
     }
   };
 

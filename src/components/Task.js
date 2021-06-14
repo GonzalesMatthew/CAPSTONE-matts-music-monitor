@@ -35,7 +35,6 @@ export default function Task({ ...rest }) {
     getInstrument(rest.task.instrumentId).then(setInstrument);
     // getTascam(rest.task.firebaseKey).then(setTascam);
   }, []);
-  // console.warn(tascam);
 
   const [updateTaskModalStatus, setUpdateModalStatus] = useState(false);
   const toggleUpdateModal = () => {
