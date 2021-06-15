@@ -7,7 +7,7 @@ const dbUrl = firebaseConfig.databaseURL;
 
 const getTascam = (taskId) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/tascam.json?orderBy="taskId"&equalTo="${taskId}"`)
-    .then((response) => resolve(response.data))
+    .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });
 

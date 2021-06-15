@@ -40,7 +40,7 @@ const TaskForm = ({
   const [taskObj, setTaskObj] = useState({
     day: moment(day).format('YYYY-MM-DD') || '',
     description: description || '',
-    duration: Number(duration) || '',
+    duration: duration || '',
     firebaseKey: firebaseKey || null,
     instrumentId: instrumentId || '',
     reviewNotes: reviewNotes || '',
@@ -67,13 +67,12 @@ const TaskForm = ({
 
   // define tascam object
   const [tascamObj, setTascamObj] = useState({
-    memoId1: tascam ? tascam.memoId1 : '',
-    memoId2: tascam ? tascam.memoId2 : '',
-    memoId3: tascam ? tascam.memoId3 : '',
-    taskId: tascam ? tascam.taskId : '',
-    track: tascam ? Number(tascam.track) : ''
+    memoId1: tascam ? tascam[0].memoId1 : '',
+    memoId2: tascam ? tascam[0].memoId2 : '',
+    memoId3: tascam ? tascam[0].memoId3 : '',
+    taskId: tascam ? tascam[0].taskId : '',
+    track: tascam ? tascam[0].track : ''
   });
-  console.warn(tascam);
 
   // hooks for topic and instrument data
   const [topicList, setTopicList] = useState([]);
@@ -348,7 +347,7 @@ TaskForm.propTypes = {
   memo3: PropTypes.string,
   time3: PropTypes.string,
   // tascam fields
-  tascam: PropTypes.object,
+  tascam: PropTypes.array,
 };
 
 export default TaskForm;

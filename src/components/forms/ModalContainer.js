@@ -28,6 +28,9 @@ const ModalContainer = ({
       <ModalBody>
         <TaskForm
           user={user}
+          setTasks={setTasks}
+          modalToggle={modalToggle}
+          // task fields:
           day={rest.day}
           description={rest.description}
           duration={rest.duration}
@@ -36,8 +39,7 @@ const ModalContainer = ({
           reviewNotes={rest.reviewNotes}
           subTopicId={rest.subTopicId}
           topicId={rest.topicId}
-          setTasks={setTasks}
-          modalToggle={modalToggle}
+          // tascam fields:
           tascam={tascam}
         />
         <br />
@@ -65,7 +67,7 @@ ModalContainer.propTypes = {
   formName: PropTypes.string,
   modalStatus: PropTypes.bool,
   modalToggle: PropTypes.func,
-  tascam: PropTypes.object,
+  tascam: PropTypes.array,
   setTasks: PropTypes.func,
   user: PropTypes.any,
   day: PropTypes.string,

@@ -26,7 +26,7 @@ export default function Task({ ...rest }) {
   const [topic, setTopic] = useState([]);
   const [subTopic, setSubTopic] = useState([]);
   const [instrument, setInstrument] = useState([]);
-  const [tascam, setTascam] = useState({});
+  const [tascam, setTascam] = useState([]);
 
   // get topic, subTopic, and instrument names for updateForm
   useEffect(() => {
