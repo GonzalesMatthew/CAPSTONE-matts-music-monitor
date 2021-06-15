@@ -33,9 +33,10 @@ const addTascam = (taskObj, memo1Obj, memo2Obj, memo3Obj, track) => new Promise(
       // patch the firebaseKey into newly created tascam data
         .then((response) => {
           const fbKey = { firebaseKey: response.data.name };
-          axios.patch(`${dbUrl}/tascam/${response.data.name}.json`, fbKey);
+          axios.patch(`${dbUrl}/tascam/${response.data.name}.json`, fbKey)
+            .then(() => getTasks(taskObj.uid).then(resolve));
         });
-    }).then(() => getTasks(taskObj.uid).then(resolve))
+    })
     .catch((error) => reject(error));
 });
 

@@ -33,9 +33,8 @@ const updateTask = (taskObj, memo1Obj, memo2Obj, memo3Obj, tascamObj) => new Pro
   axios.patch(`${dbUrl}/memo/${memo2Obj.firebaseKey}.json`, memo2Obj);
   axios.patch(`${dbUrl}/memo/${memo3Obj.firebaseKey}.json`, memo3Obj);
   axios.patch(`${dbUrl}/tascam/${tascamObj.firebaseKey}.json`, tascamObj);
-})
-  .then(() => getTasks(taskObj.uid).then(resolve))
-  .catch((error) => reject(error));
+  getTasks(taskObj.uid).then(resolve).catch((error) => reject(error));
+});
 
 const deleteTask = (firebaseKey, uid) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/task/${firebaseKey}.json`)

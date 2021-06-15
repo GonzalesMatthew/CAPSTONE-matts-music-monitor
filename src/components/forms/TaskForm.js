@@ -71,11 +71,11 @@ const TaskForm = ({
 
   // define tascam object
   const [tascamObj, setTascamObj] = useState({
-    memoId1: tascam.memoId1 || '',
-    memoId2: tascam.memoId2 || '',
-    memoId3: tascam.memoId3 || '',
-    taskId: tascam.taskId || '',
-    track: Number(tascam.track) || ''
+    memoId1: tascam ? tascam.memoId1 : '',
+    memoId2: tascam ? tascam.memoId2 : '',
+    memoId3: tascam ? tascam.memoId3 : '',
+    taskId: tascam ? tascam.taskId : '',
+    track: tascam ? Number(tascam.track) : ''
   });
 
   // hooks for topic and instrument data
@@ -147,7 +147,7 @@ const TaskForm = ({
           id='duration'
           type="number"
           name="duration"
-          placeholder=''
+          placeholder='integer...'
           min='0'
           value={taskObj.duration}
           onChange={handleInputChange}/>
@@ -159,7 +159,7 @@ const TaskForm = ({
           id='topicId'
           type="select"
           name="topicId"
-          placeholder=""
+          placeholder=''
           value={taskObj.topicId}
           onChange={handleInputChange}
         >
@@ -179,7 +179,7 @@ const TaskForm = ({
           id='subTopicId'
           type="select"
           name="subTopicId"
-          placeholder=""
+          placeholder=''
           value={taskObj.subTopicId}
           onChange={handleInputChange}
         >
@@ -200,7 +200,7 @@ const TaskForm = ({
           id='instrumentId'
           type="select"
           name="instrumentId"
-          placeholder=""
+          placeholder=''
           value={taskObj.instrumentId}
           onChange={handleInputChange}
         >
@@ -221,7 +221,7 @@ const TaskForm = ({
           id='day'
           type="date"
           name="day"
-          placeholder=""
+          placeholder=''
           value={taskObj.day}
           onChange={handleInputChange}/>
       </FormGroup>
@@ -232,7 +232,7 @@ const TaskForm = ({
           id='description'
           type="string"
           name="description"
-          placeholder="enterDescription..."
+          placeholder="text..."
           value={taskObj.description}
           onChange={handleInputChange}/>
       </FormGroup>
@@ -243,7 +243,7 @@ const TaskForm = ({
           id='reviewNotes'
           type="string"
           name="reviewNotes"
-          placeholder="enterReviewNotes..."
+          placeholder="text..."
           value={taskObj.reviewNotes}
           onChange={handleInputChange}/>
       </FormGroup>
@@ -257,7 +257,7 @@ const TaskForm = ({
         <Input
           type="string"
           name="track"
-          placeholder=""
+          placeholder='integer...'
           value={tascamObj.track}
           onChange={handleTascamChange}/>
       </FormGroup>
@@ -270,7 +270,7 @@ const TaskForm = ({
         <Input
           type="string"
           name="memo"
-          placeholder=""
+          placeholder='text...'
           value={memo1Obj.memo}
           onChange={handleMemo1Change}/>
       </FormGroup>
@@ -290,7 +290,7 @@ const TaskForm = ({
         <Input
           type="string"
           name="memo"
-          placeholder=""
+          placeholder='text...'
           value={memo2Obj.memo}
           onChange={handleMemo2Change}/>
       </FormGroup>
@@ -310,7 +310,7 @@ const TaskForm = ({
         <Input
           type="string"
           name="memo"
-          placeholder=''
+          placeholder='text...'
           value={memo3Obj.memo}
           onChange={handleMemo3Change}/>
       </FormGroup>
