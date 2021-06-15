@@ -6,7 +6,7 @@ import { addTask, getTasks } from './TaskData';
 const dbUrl = firebaseConfig.databaseURL;
 
 const getTascam = (taskId) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/tascam/${taskId}.json`)
+  axios.get(`${dbUrl}/tascam.json?orderBy="taskId"&equalTo="${taskId}"`)
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });

@@ -17,7 +17,6 @@ const TaskForm = ({
   user,
   setTasks,
   modalToggle,
-  tascam,
   // task fields:
   day,
   description,
@@ -35,10 +34,7 @@ const TaskForm = ({
   memo3,
   time3,
   // tascam fields:
-  // memoId1,
-  // memoId2,
-  // memoId3,
-  // track,
+  tascam,
 }) => {
   // define task object
   const [taskObj, setTaskObj] = useState({
@@ -77,6 +73,7 @@ const TaskForm = ({
     taskId: tascam ? tascam.taskId : '',
     track: tascam ? Number(tascam.track) : ''
   });
+  console.warn(tascam);
 
   // hooks for topic and instrument data
   const [topicList, setTopicList] = useState([]);
