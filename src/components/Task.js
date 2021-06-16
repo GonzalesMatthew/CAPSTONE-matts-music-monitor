@@ -69,7 +69,7 @@ export default function Task({ ...rest }) {
         <Button color='dark' onClick={() => {
           // eslint-disable-next-line no-alert
           if (window.confirm('delete...?')) {
-            deleteTask(rest.task.firebaseKey, rest.user.uid).then(rest.setTasks);
+            deleteTask(rest.task.firebaseKey, tascam[0].firebaseKey, memo1.firebaseKey, memo2.firebaseKey, memo3.firebaseKey, rest.user.uid).then(rest.setTasks);
           }
         }
         }><img alt='delete button' src={images.xIcon}
