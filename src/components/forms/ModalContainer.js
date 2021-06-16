@@ -15,7 +15,7 @@ import TaskForm from './TaskForm';
 // }));
 
 const ModalContainer = ({
-  id, user, formName, setTasks, modalStatus, modalToggle, tascam, ...rest
+  id, user, formName, setTasks, modalStatus, modalToggle, tascam, memo1, memo2, memo3, ...rest
 }) => (
   // const classes = useStyles();
     <Modal
@@ -41,6 +41,10 @@ const ModalContainer = ({
           topicId={rest.topicId}
           // tascam fields:
           tascam={tascam}
+          // memo fields:
+          memo1={memo1}
+          memo2={memo2}
+          memo3={memo3}
         />
         <br />
         {/* <Button color="success" onClick={toggleNested}>Show Nested Modal</Button> */}
@@ -68,6 +72,9 @@ ModalContainer.propTypes = {
   modalStatus: PropTypes.bool,
   modalToggle: PropTypes.func,
   tascam: PropTypes.array,
+  memo1: PropTypes.object,
+  memo2: PropTypes.object,
+  memo3: PropTypes.object,
   setTasks: PropTypes.func,
   user: PropTypes.any,
   day: PropTypes.string,

@@ -28,11 +28,8 @@ const TaskForm = ({
   topicId,
   // memo fields:
   memo1,
-  time1,
   memo2,
-  time2,
   memo3,
-  time3,
   // tascam fields:
   tascam,
 }) => {
@@ -51,18 +48,18 @@ const TaskForm = ({
 
   // define memo1 object
   const [memo1Obj, setMemo1Obj] = useState({
-    memo: memo1 || '',
-    time: time1 || '',
+    memo: memo1 ? memo1.memo : '',
+    time: memo1 ? memo1.time : '',
   });
   // define memo2 object
   const [memo2Obj, setMemo2Obj] = useState({
-    memo: memo2 || '',
-    time: time2 || '',
+    memo: memo2 ? memo2.memo : '',
+    time: memo2 ? memo2.time : '',
   });
   // define memo2 object
   const [memo3Obj, setMemo3Obj] = useState({
-    memo: memo3 || '',
-    time: time3 || '',
+    memo: memo3 ? memo3.memo : '',
+    time: memo3 ? memo3.time : '',
   });
 
   // define tascam object
@@ -340,12 +337,9 @@ TaskForm.propTypes = {
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
   // memo fields
-  memo1: PropTypes.string,
-  time1: PropTypes.string,
-  memo2: PropTypes.string,
-  time2: PropTypes.string,
-  memo3: PropTypes.string,
-  time3: PropTypes.string,
+  memo1: PropTypes.object,
+  memo2: PropTypes.object,
+  memo3: PropTypes.object,
   // tascam fields
   tascam: PropTypes.array,
 };
