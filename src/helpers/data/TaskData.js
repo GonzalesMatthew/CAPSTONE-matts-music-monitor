@@ -19,8 +19,23 @@ const addTask = (taskObj) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const updateTask = (taskObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/task/${taskObj.firebaseKey}.json`, taskObj)
+// original, working updateTask just in case
+// const updateTask = (taskObj) => new Promise((resolve, reject) => {
+//   axios.patch(`${dbUrl}/task/${taskObj.firebaseKey}.json`, taskObj)
+//     .then(() => getTasks(taskObj.uid).then(resolve))
+//     .catch((error) => reject(error));
+// });
+
+// updateTask updates all tables associated to the respective task (tascam, memo)
+const updateTask = (taskObj, memo1Obj, memo2Obj, memo3Obj, tascamObj) => new Promise((resolve, reject) => {
+  // patch each table object
+  const patchTask = axios.patch(`${dbUrl}/task/${taskObj.firebaseKey}.json`, taskObj);
+  const patchMemo1 = axios.patch(`${dbUrl}/memo/${memo1Obj.firebaseKey}.json`, memo1Obj);
+  const patchMemo2 = axios.patch(`${dbUrl}/memo/${memo2Obj.firebaseKey}.json`, memo2Obj);
+  const patchMemo3 = axios.patch(`${dbUrl}/memo/${memo3Obj.firebaseKey}.json`, memo3Obj);
+  const patchTascam = axios.patch(`${dbUrl}/tascam/${tascamObj.firebaseKey}.json`, tascamObj);
+
+  Promise.all([patchTask, patchMemo1, patchMemo2, patchMemo3, patchTascam])
     .then(() => getTasks(taskObj.uid).then(resolve))
     .catch((error) => reject(error));
 });

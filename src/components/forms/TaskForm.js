@@ -28,22 +28,16 @@ const TaskForm = ({
   topicId,
   // memo fields:
   memo1,
-  time1,
   memo2,
-  time2,
   memo3,
-  time3,
   // tascam fields:
-  memoId1,
-  memoId2,
-  memoId3,
-  track,
+  tascam,
 }) => {
   // define task object
   const [taskObj, setTaskObj] = useState({
     day: moment(day).format('YYYY-MM-DD') || '',
     description: description || '',
-    duration: Number(duration) || '',
+    duration: duration || '',
     firebaseKey: firebaseKey || null,
     instrumentId: instrumentId || '',
     reviewNotes: reviewNotes || '',
@@ -54,27 +48,33 @@ const TaskForm = ({
 
   // define memo1 object
   const [memo1Obj, setMemo1Obj] = useState({
-    memo: memo1 || '',
-    time: time1 || '',
+    memo: memo1 ? memo1.memo : '',
+    time: memo1 ? memo1.time : '',
+    firebaseKey: memo1 ? memo1.firebaseKey : '',
   });
+
   // define memo2 object
   const [memo2Obj, setMemo2Obj] = useState({
-    memo: memo2 || '',
-    time: time2 || '',
+    memo: memo2 ? memo2.memo : '',
+    time: memo2 ? memo2.time : '',
+    firebaseKey: memo2 ? memo2.firebaseKey : '',
   });
+
   // define memo2 object
   const [memo3Obj, setMemo3Obj] = useState({
-    memo: memo3 || '',
-    time: time3 || '',
+    memo: memo3 ? memo3.memo : '',
+    time: memo3 ? memo3.time : '',
+    firebaseKey: memo3 ? memo3.firebaseKey : '',
   });
 
   // define tascam object
   const [tascamObj, setTascamObj] = useState({
-    memoId1: memoId1 || '',
-    memoId2: memoId2 || '',
-    memoId3: memoId3 || '',
-    taskId: firebaseKey || '',
-    track: Number(track) || ''
+    memoId1: tascam ? tascam[0].memoId1 : '',
+    memoId2: tascam ? tascam[0].memoId2 : '',
+    memoId3: tascam ? tascam[0].memoId3 : '',
+    taskId: tascam ? tascam[0].taskId : '',
+    track: tascam ? tascam[0].track : '',
+    firebaseKey: tascam ? tascam[0].firebaseKey : '',
   });
 
   // hooks for topic and instrument data
@@ -129,7 +129,7 @@ const TaskForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskObj.firebaseKey) {
-      updateTask(taskObj).then(setTasks);
+      updateTask(taskObj, memo1Obj, memo2Obj, memo3Obj, tascamObj).then(setTasks);
     } else {
       addTascam(taskObj, memo1Obj, memo2Obj, memo3Obj, tascamObj.track).then(setTasks);
     }
@@ -146,7 +146,7 @@ const TaskForm = ({
           id='duration'
           type="number"
           name="duration"
-          placeholder=''
+          placeholder='integer...'
           min='0'
           value={taskObj.duration}
           onChange={handleInputChange}/>
@@ -158,7 +158,7 @@ const TaskForm = ({
           id='topicId'
           type="select"
           name="topicId"
-          placeholder=""
+          placeholder=''
           value={taskObj.topicId}
           onChange={handleInputChange}
         >
@@ -178,7 +178,7 @@ const TaskForm = ({
           id='subTopicId'
           type="select"
           name="subTopicId"
-          placeholder=""
+          placeholder=''
           value={taskObj.subTopicId}
           onChange={handleInputChange}
         >
@@ -199,7 +199,7 @@ const TaskForm = ({
           id='instrumentId'
           type="select"
           name="instrumentId"
-          placeholder=""
+          placeholder=''
           value={taskObj.instrumentId}
           onChange={handleInputChange}
         >
@@ -220,7 +220,7 @@ const TaskForm = ({
           id='day'
           type="date"
           name="day"
-          placeholder=""
+          placeholder=''
           value={taskObj.day}
           onChange={handleInputChange}/>
       </FormGroup>
@@ -231,7 +231,7 @@ const TaskForm = ({
           id='description'
           type="string"
           name="description"
-          placeholder="enterDescription..."
+          placeholder="text..."
           value={taskObj.description}
           onChange={handleInputChange}/>
       </FormGroup>
@@ -242,7 +242,7 @@ const TaskForm = ({
           id='reviewNotes'
           type="string"
           name="reviewNotes"
-          placeholder="enterReviewNotes..."
+          placeholder="text..."
           value={taskObj.reviewNotes}
           onChange={handleInputChange}/>
       </FormGroup>
@@ -256,7 +256,7 @@ const TaskForm = ({
         <Input
           type="string"
           name="track"
-          placeholder=""
+          placeholder='integer...'
           value={tascamObj.track}
           onChange={handleTascamChange}/>
       </FormGroup>
@@ -269,7 +269,7 @@ const TaskForm = ({
         <Input
           type="string"
           name="memo"
-          placeholder=""
+          placeholder='text...'
           value={memo1Obj.memo}
           onChange={handleMemo1Change}/>
       </FormGroup>
@@ -289,7 +289,7 @@ const TaskForm = ({
         <Input
           type="string"
           name="memo"
-          placeholder=""
+          placeholder='text...'
           value={memo2Obj.memo}
           onChange={handleMemo2Change}/>
       </FormGroup>
@@ -309,7 +309,7 @@ const TaskForm = ({
         <Input
           type="string"
           name="memo"
-          placeholder=''
+          placeholder='text...'
           value={memo3Obj.memo}
           onChange={handleMemo3Change}/>
       </FormGroup>
@@ -343,17 +343,11 @@ TaskForm.propTypes = {
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
   // memo fields
-  memo1: PropTypes.string,
-  time1: PropTypes.string,
-  memo2: PropTypes.string,
-  time2: PropTypes.string,
-  memo3: PropTypes.string,
-  time3: PropTypes.string,
+  memo1: PropTypes.object,
+  memo2: PropTypes.object,
+  memo3: PropTypes.object,
   // tascam fields
-  memoId1: PropTypes.string,
-  memoId2: PropTypes.string,
-  memoId3: PropTypes.string,
-  track: PropTypes.string,
+  tascam: PropTypes.array,
 };
 
 export default TaskForm;
