@@ -50,16 +50,21 @@ const TaskForm = ({
   const [memo1Obj, setMemo1Obj] = useState({
     memo: memo1 ? memo1.memo : '',
     time: memo1 ? memo1.time : '',
+    firebaseKey: memo1 ? memo1.firebaseKey : '',
   });
+
   // define memo2 object
   const [memo2Obj, setMemo2Obj] = useState({
     memo: memo2 ? memo2.memo : '',
     time: memo2 ? memo2.time : '',
+    firebaseKey: memo2 ? memo2.firebaseKey : '',
   });
+
   // define memo2 object
   const [memo3Obj, setMemo3Obj] = useState({
     memo: memo3 ? memo3.memo : '',
     time: memo3 ? memo3.time : '',
+    firebaseKey: memo3 ? memo3.firebaseKey : '',
   });
 
   // define tascam object
@@ -68,7 +73,8 @@ const TaskForm = ({
     memoId2: tascam ? tascam[0].memoId2 : '',
     memoId3: tascam ? tascam[0].memoId3 : '',
     taskId: tascam ? tascam[0].taskId : '',
-    track: tascam ? tascam[0].track : ''
+    track: tascam ? tascam[0].track : '',
+    firebaseKey: tascam ? tascam[0].firebaseKey : '',
   });
 
   // hooks for topic and instrument data
