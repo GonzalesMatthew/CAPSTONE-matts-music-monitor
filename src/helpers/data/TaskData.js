@@ -19,13 +19,6 @@ const addTask = (taskObj) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-// original, working updateTask just in case
-// const updateTask = (taskObj) => new Promise((resolve, reject) => {
-//   axios.patch(`${dbUrl}/task/${taskObj.firebaseKey}.json`, taskObj)
-//     .then(() => getTasks(taskObj.uid).then(resolve))
-//     .catch((error) => reject(error));
-// });
-
 // updateTask updates all tables associated to the respective task (tascam, memo)
 const updateTask = (taskObj, memo1Obj, memo2Obj, memo3Obj, tascamObj) => new Promise((resolve, reject) => {
   // patch each table object
@@ -40,8 +33,13 @@ const updateTask = (taskObj, memo1Obj, memo2Obj, memo3Obj, tascamObj) => new Pro
     .catch((error) => reject(error));
 });
 
-const deleteTask = (firebaseKey, uid) => new Promise((resolve, reject) => {
-  axios.delete(`${dbUrl}/task/${firebaseKey}.json`)
+const deleteTask = (taskFbKey, tascamFbKey, memo1FbKey, memo2FbKey, memo3FbKey, uid) => new Promise((resolve, reject) => {
+  const deleteTaskObj = axios.delete(`${dbUrl}/task/${taskFbKey}.json`);
+  const deleteTascam = axios.delete(`${dbUrl}/tascam/${tascamFbKey}.json`);
+  const deleteMemo1 = axios.delete(`${dbUrl}/memo/${memo1FbKey}.json`);
+  const deleteMemo2 = axios.delete(`${dbUrl}/memo/${memo2FbKey}.json`);
+  const deleteMemo3 = axios.delete(`${dbUrl}/memo/${memo3FbKey}.json`);
+  Promise.all([deleteTaskObj, deleteTascam, deleteMemo1, deleteMemo2, deleteMemo3])
     .then(() => getTasks(uid).then(resolve))
     .catch((error) => reject(error));
 });
