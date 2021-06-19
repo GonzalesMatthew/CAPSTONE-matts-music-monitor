@@ -1,8 +1,25 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
+import { makeStyles, Container, Paper } from '@material-ui/core';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+  },
+  large: {
+    width: theme.spacing(15),
+    height: theme.spacing(15),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 500,
+    backgroundColor: '#D1CBC1',
+    // color: '#C9D1D9'
+  },
+}));
 function ContributionGraph() {
+  const classes = useStyles();
   function useD3(renderChartFn, dependencies) {
     const ref = useRef();
     useEffect(() => {
@@ -110,19 +127,23 @@ function ContributionGraph() {
   );
 
   return (
-    <svg
-      ref={ref}
-      style={{
-        height: 500,
-        width: '100%',
-        marginRight: '0px',
-        marginLeft: '0px',
-      }}
-    >
-      <g className='plot-area' />
-      <g className='x-axis' />
-      <g className='y-axis' />
-    </svg>
+    <Container>
+      <Paper className={classes.paper} elevation={6}>
+        <svg
+          ref={ref}
+          style={{
+            height: 500,
+            width: '100%',
+            marginRight: '0px',
+            marginLeft: '0px',
+          }}
+        >
+          <g className='plot-area' />
+          <g className='x-axis' />
+          <g className='y-axis' />
+        </svg>
+      </Paper>
+    </Container>
   );
 }
 
@@ -132,26 +153,6 @@ ContributionGraph.propTypes = {
   // user: PropTypes.any,
   data: PropTypes.array,
 };
-
-// import * as d3 from 'd3';
-// import PropTypes from 'prop-types';
-// import { makeStyles, Container, Paper } from '@material-ui/core';
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//   },
-//   large: {
-//     width: theme.spacing(15),
-//     height: theme.spacing(15),
-//   },
-//   paper: {
-//     padding: theme.spacing(2),
-//     margin: 'auto',
-//     maxWidth: 500,
-//     backgroundColor: '#D1CBC1',
-//     // color: '#C9D1D9'
-//   },
-// }));
 
 // start my original component:
 // export default function ContributionGraph({ user }) {
