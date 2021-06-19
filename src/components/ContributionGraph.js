@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 import { makeStyles, Container, Paper } from '@material-ui/core';
+import HeatMap from '@uiw/react-heat-map';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -228,6 +229,27 @@ function ContributionGraph() {
   //       .attr('class', (d) => `day color${d - 1}`);
   // }
 
+  // code for HeatMap:
+  // map tasks to value
+  // const [value, setValue] = useState([]);
+
+  // useEffect(() => {
+  //   value = tasks.map((task) => {
+  //     []
+  //   });
+  // }, tasks);
+
+  const value = [
+    { date: '2016/01/11', count: 2 },
+    { date: '2016/01/12', count: 20 },
+    { date: '2016/01/13', count: 10 },
+    ...[...Array(17)].map((_, idx) => ({ date: `2016/02/${idx + 10}`, count: idx, content: '' })),
+    { date: '2016/04/11', count: 2 },
+    { date: '2016/05/01', count: 5 },
+    { date: '2016/05/02', count: 5 },
+    { date: '2016/05/04', count: 11 },
+  ];
+
   return (
     <Container>
       <Paper className={classes.paper} elevation={6}>
@@ -244,6 +266,18 @@ function ContributionGraph() {
           <g className='x-axis' />
           <g className='y-axis' />
         </svg>
+
+        <div>
+          <HeatMap
+            value={value}
+            startDate={new Date('2016/01/01')}
+            endDate={new Date()}
+            rectProps={{
+              rx: 2
+            }}
+            legendCellSize={0}
+          />
+        </div>
       </Paper>
     </Container>
   );
@@ -254,4 +288,5 @@ export default ContributionGraph;
 ContributionGraph.propTypes = {
   // user: PropTypes.any,
   data: PropTypes.array,
+  tasks: PropTypes.array,
 };
