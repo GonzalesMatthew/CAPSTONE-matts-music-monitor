@@ -53,28 +53,23 @@ function ContributionGraph({ tasks }) {
     }
     return values;
   }, [tasks]);
-  console.warn(values);
-  console.warn(test);
-  // console.warn('value:', typeof value);
-  // console.warn('test:', typeof test);
+  console.warn(values, test, 'value:', typeof values, 'test:', typeof test);
 
   return (
     <Container>
       <Paper className={classes.paper} elevation={6}>
-
         {/* contribution graph code: */}
-        <div>
-          <CalendarHeatmap
-            startDate={new Date('2021-01-01')}
-            endDate={new Date()}
-            values={values}
-            tooltipDataAttrs={(value) => ({
-              'data-tip': value.date ? `${value.date}, duration: ${value.count} minutes` : '',
-            })}
-            showWeekdayLabels={true}
-          />
-          <ReactTooltip />
-        </div>
+        <CalendarHeatmap
+          startDate={new Date('2021-01-01')}
+          endDate={new Date()}
+          values={values}
+          tooltipDataAttrs={(value) => ({
+            'data-tip': value.date ? `${value.date}, duration: ${value.count} minutes` : '',
+          })}
+          weekdayLabels={['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']}
+          showWeekdayLabels={true}
+        />
+        <ReactTooltip />
       </Paper>
     </Container>
   );
