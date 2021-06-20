@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, Container, Paper } from '@material-ui/core';
-import Tooltip from '@uiw/react-tooltip';
-import HeatMap from '@uiw/react-heat-map';
+import CalendarHeatmap from 'react-calendar-heatmap';
+import ReactTooltip from 'react-tooltip';
+import 'react-calendar-heatmap/dist/styles.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,25 +29,31 @@ function ContributionGraph({ tasks }) {
     { date: '2021-01-11', count: 2 },
     { date: '2021-01-12', count: 20 },
     { date: '2021-01-13', count: 10 },
-    ...[...Array(17)].map((_, idx) => ({ date: `2021-02-${idx + 10}`, count: idx, content: '' })),
     { date: '2021-04-11', count: 2 },
     { date: '2021-05-01', count: 5 },
     { date: '2021-05-02', count: 5 },
     { date: '2021-05-04', count: 11 },
-    { date: '2021-06-15', count: 45 },
+    { date: '2021-05-05', count: 45 },
+    { date: '2021-05-06', count: 45 },
+    { date: '2021-05-07', count: 45 },
+    { date: '2021-05-07', count: 45 },
     { date: '2021-06-19', count: 45 },
+    { date: '2021-06-19', count: 45 },
+    { date: '2021-06-20', count: 45 },
+    { date: '2021-06-21', count: 45 },
+    { date: '2021-12-31', count: 45 },
   ];
 
   // contribution graph code, from tasks:
-  const [value] = useState([]);
+  const [values] = useState([]);
   useEffect(() => {
-    // map tasks into format which 'value' needs for HeatMap component:
+    // map tasks into format which 'value' needs for CalendarHeatmap component:
     for (let i = 0; i < tasks.length; i += 1) {
-      value[i] = { date: tasks[i].day, count: tasks[i].duration };
+      values[i] = { date: tasks[i].day || '', count: tasks[i].duration || 0 };
     }
-    return value;
+    return values;
   }, [tasks]);
-  console.warn(value);
+  console.warn(values);
   console.warn(test);
   // console.warn('value:', typeof value);
   // console.warn('test:', typeof test);
@@ -57,26 +64,16 @@ function ContributionGraph({ tasks }) {
 
         {/* contribution graph code: */}
         <div>
-          <HeatMap
-            value={value}
+          <CalendarHeatmap
             startDate={new Date('2021-01-01')}
-            // endDate={new Date()}
-            rectProps={{
-              rx: 2
-            }}
-            legendCellSize={10}
+            endDate={new Date()}
+            values={values}
+            tooltipDataAttrs={(value) => ({
+              'data-tip': value.date ? `${value.date}, duration: ${value.count} minutes` : '',
+            })}
+            showWeekdayLabels={true}
           />
-        </div>
-        <div>
-        <HeatMap
-          value={value}
-          startDate={new Date('2016/01/01')}
-          rectRender={(props, data) => (
-            <Tooltip placement="top" content={`count: ${data.count || 0}`}>
-              <rect {...props} />
-            </Tooltip>
-          )}
-    />
+          <ReactTooltip />
         </div>
       </Paper>
     </Container>
