@@ -7,12 +7,6 @@ import ReactTooltip from 'react-tooltip';
 import 'react-calendar-heatmap/dist/styles.css';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-  },
-  large: {
-    width: theme.spacing(15),
-    height: theme.spacing(15),
-  },
   paper: {
     padding: theme.spacing(2),
     margin: 'auto',

@@ -11,6 +11,7 @@ export default function UserProfile({
     <>
       <UserLanding
         user={user}
+        tasks={tasks}
         setTasks={setTasks}
       />
       <TaskWindow
