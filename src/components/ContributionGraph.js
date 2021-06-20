@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, Container, Paper } from '@material-ui/core';
+import Tooltip from '@uiw/react-tooltip';
 import HeatMap from '@uiw/react-heat-map';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,18 +24,18 @@ function ContributionGraph({ tasks }) {
   const classes = useStyles();
 
   // contribution graph code, working example:
-  // const test = [
-  //   { date: '2021-01-11', count: 2 },
-  //   { date: '2021-01-12', count: 20 },
-  //   { date: '2021-01-13', count: 10 },
-  //   ...[...Array(17)].map((_, idx) => ({ date: `2021-02-${idx + 10}`, count: idx, content: '' })),
-  //   { date: '2021-04-11', count: 2 },
-  //   { date: '2021-05-01', count: 5 },
-  //   { date: '2021-05-02', count: 5 },
-  //   { date: '2021-05-04', count: 11 },
-  //   { date: '2021-06-15', count: 45 },
-  //   { date: '2021-06-19', count: 45 },
-  // ];
+  const test = [
+    { date: '2021-01-11', count: 2 },
+    { date: '2021-01-12', count: 20 },
+    { date: '2021-01-13', count: 10 },
+    ...[...Array(17)].map((_, idx) => ({ date: `2021-02-${idx + 10}`, count: idx, content: '' })),
+    { date: '2021-04-11', count: 2 },
+    { date: '2021-05-01', count: 5 },
+    { date: '2021-05-02', count: 5 },
+    { date: '2021-05-04', count: 11 },
+    { date: '2021-06-15', count: 45 },
+    { date: '2021-06-19', count: 45 },
+  ];
 
   // contribution graph code, from tasks:
   const [value] = useState([]);
@@ -43,9 +44,10 @@ function ContributionGraph({ tasks }) {
     for (let i = 0; i < tasks.length; i += 1) {
       value[i] = { date: tasks[i].day, count: tasks[i].duration };
     }
+    return value;
   }, [tasks]);
   console.warn(value);
-  // console.warn(test);
+  console.warn(test);
   // console.warn('value:', typeof value);
   // console.warn('test:', typeof test);
 
@@ -64,6 +66,17 @@ function ContributionGraph({ tasks }) {
             }}
             legendCellSize={10}
           />
+        </div>
+        <div>
+        <HeatMap
+          value={value}
+          startDate={new Date('2016/01/01')}
+          rectRender={(props, data) => (
+            <Tooltip placement="top" content={`count: ${data.count || 0}`}>
+              <rect {...props} />
+            </Tooltip>
+          )}
+    />
         </div>
       </Paper>
     </Container>
