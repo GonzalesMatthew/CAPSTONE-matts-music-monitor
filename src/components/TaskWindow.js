@@ -34,7 +34,6 @@ export default function TaskWindow({
             key={task.firebaseKey}
             task={task}
             user={rest.user}
-            tasks={rest.tasks}
             setTasks={rest.setTasks}
           />
         ))}

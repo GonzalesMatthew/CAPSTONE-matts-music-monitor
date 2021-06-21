@@ -342,12 +342,12 @@ TaskForm.propTypes = {
   reviewNotes: PropTypes.string,
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
+  // tascam fields
+  tascam: PropTypes.array,
   // memo fields
   memo1: PropTypes.object,
   memo2: PropTypes.object,
   memo3: PropTypes.object,
-  // tascam fields
-  tascam: PropTypes.array,
 };
 
 export default TaskForm;
