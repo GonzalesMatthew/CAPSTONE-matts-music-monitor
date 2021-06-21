@@ -20,7 +20,7 @@ export default function UserProfile({
         setTasks={setTasks}
       />
       <ContributionGraph
-       tasks={tasks}
+        tasks={tasks}
       />
     </>
   );
