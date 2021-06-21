@@ -54,7 +54,7 @@ export default function UserLanding({
           <div className='d-flex flex-column flex-grow-1'>
             <Div>
               <Typography gutterBottom variant='subtitle1'>
-                { (tasks.length === 0) ? <h5>Welcome, {user.fullName}...</h5> : <h5>Welcome back, {user.fullName}...</h5>
+                { (tasks.length === 0) ? <>Welcome, {user.fullName}...</> : <>Welcome back, {user.fullName}...</>
                 }
               </Typography>
             </Div>

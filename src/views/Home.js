@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { makeStyles, Container, Paper } from '@material-ui/core';
+import {
+  makeStyles, Container, Paper,
+} from '@material-ui/core';
 import { signInUser } from '../helpers/auth';
+import images from '../helpers/images/images';
 
 const Div = styled.div`
   display: flex;
@@ -24,9 +27,15 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 500,
     backgroundColor: '#D1CBC1',
   },
+  media: {
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '50%',
+    transform: 'rotate(90deg)'
+  },
 }));
-// background-image: url(https://images.vectorhq.com/images/previews/a51/stage-lighting-psd-439877.png);
-  // background-repeat: no-repeat;
+
 export default function Home() {
   const classes = useStyles();
   return (
@@ -39,6 +48,12 @@ export default function Home() {
             </Div2>
             <Div2>
               <Link className='btn btn-dark' onClick={signInUser} to='/user'>logOn...</Link>
+            </Div2>
+            <Div2>
+              <img className={classes.media}
+                src={images.hs8}
+                alt='picture of monitor'
+              />
             </Div2>
           </Div>
         </Paper>
