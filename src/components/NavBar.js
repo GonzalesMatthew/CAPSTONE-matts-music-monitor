@@ -17,25 +17,23 @@ const NavBar = ({ user }) => {
   const navToggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
-      <Navbar color="dark" dark expand="md">
-        <NavbarBrand>musicMonitor...</NavbarBrand>
-        <NavbarToggler onClick={navToggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            {
-              user !== null
-              && <NavItem>
-                {
-                  user
-                    && <Link className='btn btn-dark' to='/' onClick={signOutUser}>logOff...</Link>
-                }
-              </NavItem>
-            }
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
+    <Navbar className='nav-border' color="dark" dark expand="md">
+      <NavbarBrand>musicMonitor...</NavbarBrand>
+      <NavbarToggler onClick={navToggle} />
+      <Collapse isOpen={isOpen} navbar>
+        <Nav className="mr-auto" navbar>
+          {
+            user !== null
+            && <NavItem>
+              {
+                user
+                  && <Link className='btn btn-dark' to='/' onClick={signOutUser}>logOff...</Link>
+              }
+            </NavItem>
+          }
+        </Nav>
+      </Collapse>
+    </Navbar>
   );
 };
 

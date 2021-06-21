@@ -27,9 +27,11 @@ const Div = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  margin: auto;
 `;
 export default function UserLanding({
-  user, setTasks
+  user, tasks, setTasks
 }) {
   // useStyles
   const classes = useStyles();
@@ -52,7 +54,8 @@ export default function UserLanding({
           <div className='d-flex flex-column flex-grow-1'>
             <Div>
               <Typography gutterBottom variant='subtitle1'>
-                Welcome, {user.fullName}...
+                { (tasks.length === 0) ? <>Welcome, {user.fullName}...</> : <>Welcome back, {user.fullName}...</>
+                }
               </Typography>
             </Div>
             <Div>
@@ -78,5 +81,6 @@ export default function UserLanding({
 
 UserLanding.propTypes = {
   user: PropTypes.any.isRequired,
+  tasks: PropTypes.array,
   setTasks: PropTypes.func,
 };

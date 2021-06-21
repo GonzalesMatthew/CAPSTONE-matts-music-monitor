@@ -12,7 +12,8 @@ import { getMemo } from '../helpers/data/MemoData';
 
 const useStyles = makeStyles(() => ({
   task: {
-    backgroundColor: '#343A40'
+    backgroundColor: '#343A40',
+    borderRadius: 7,
   },
   image: {
     height: 25,
