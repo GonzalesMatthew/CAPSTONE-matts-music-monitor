@@ -21,6 +21,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: 50,
   },
 }));
+
 export default function Task({ ...rest }) {
   const classes = useStyles();
 
@@ -33,17 +34,23 @@ export default function Task({ ...rest }) {
   const [memo2, setMemo2] = useState({});
   const [memo3, setMemo3] = useState({});
 
+  // get topic, subTopic, and instrument names for updateForm
   useEffect(() => {
-    // get topic, subTopic, and instrument names for updateForm
     getTopic(rest.task.topicId).then(setTopic);
+  }, []);
+  useEffect(() => {
     getTopic(rest.task.subTopicId).then(setSubTopic);
+  }, []);
+  useEffect(() => {
     getInstrument(rest.task.instrumentId).then(setInstrument);
-    // get Tascam info and Memo info for updateForm
+  }, []);
+  // get Tascam info and Memo info for updateForm
+  useEffect(() => {
     getTascam(rest.task.firebaseKey).then((resp) => {
-      setTascam(resp);
       getMemo(resp[0].memoId1).then(setMemo1);
       getMemo(resp[0].memoId2).then(setMemo2);
       getMemo(resp[0].memoId3).then(setMemo3);
+      setTascam(resp);
     });
   }, []);
 
