@@ -30,7 +30,7 @@ const ModalContainer = ({
           user={user}
           setTasks={setTasks}
           modalToggle={modalToggle}
-          // task fields:
+          // task data
           day={rest.day}
           description={rest.description}
           duration={rest.duration}
@@ -39,23 +39,13 @@ const ModalContainer = ({
           reviewNotes={rest.reviewNotes}
           subTopicId={rest.subTopicId}
           topicId={rest.topicId}
-          // tascam fields:
+          // tascam data
           tascam={tascam}
-          // memo fields:
           memo1={memo1}
           memo2={memo2}
           memo3={memo3}
         />
         <br />
-        {/* <Button color="success" onClick={toggleNested}>Show Nested Modal</Button> */}
-        {/* <Modal isOpen={nestedModal} toggle={toggleNested} onClosed={closeAll ? toggle : undefined}>
-          <ModalHeader>Nested Modal title</ModalHeader>
-          <ModalBody>Stuff and things</ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={toggleNested}>Done</Button>{' '}
-            <Button color="secondary" onClick={toggleAll}>All Done</Button>
-          </ModalFooter>
-        </Modal> */}
       </ModalBody>
       {/* <ModalFooter>
         <Button type='submit'color="dark">Submit...</Button>
@@ -69,14 +59,10 @@ export default ModalContainer;
 ModalContainer.propTypes = {
   id: PropTypes.string,
   formName: PropTypes.string,
-  modalStatus: PropTypes.bool,
-  modalToggle: PropTypes.func,
-  tascam: PropTypes.array,
-  memo1: PropTypes.object,
-  memo2: PropTypes.object,
-  memo3: PropTypes.object,
-  setTasks: PropTypes.func,
+  // user, setTasks
   user: PropTypes.any,
+  setTasks: PropTypes.func,
+  //  task data
   day: PropTypes.string,
   description: PropTypes.string,
   duration: PropTypes.number,
@@ -85,4 +71,12 @@ ModalContainer.propTypes = {
   reviewNotes: PropTypes.string,
   subTopicId: PropTypes.string,
   topicId: PropTypes.string,
+  // tascam data
+  tascam: PropTypes.array,
+  memo1: PropTypes.object,
+  memo2: PropTypes.object,
+  memo3: PropTypes.object,
+  // modal toggle
+  modalStatus: PropTypes.bool,
+  modalToggle: PropTypes.func,
 };

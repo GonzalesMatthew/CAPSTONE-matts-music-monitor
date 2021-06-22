@@ -21,6 +21,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: 50,
   },
 }));
+
 export default function Task({ ...rest }) {
   const classes = useStyles();
 
@@ -36,13 +37,20 @@ export default function Task({ ...rest }) {
   // get topic, subTopic, and instrument names for updateForm
   useEffect(() => {
     getTopic(rest.task.topicId).then(setTopic);
+  }, []);
+  useEffect(() => {
     getTopic(rest.task.subTopicId).then(setSubTopic);
+  }, []);
+  useEffect(() => {
     getInstrument(rest.task.instrumentId).then(setInstrument);
+  }, []);
+  // get Tascam info and Memo info for updateForm
+  useEffect(() => {
     getTascam(rest.task.firebaseKey).then((resp) => {
-      setTascam(resp);
       getMemo(resp[0].memoId1).then(setMemo1);
       getMemo(resp[0].memoId2).then(setMemo2);
       getMemo(resp[0].memoId3).then(setMemo3);
+      setTascam(resp);
     });
   }, []);
 
@@ -78,7 +86,11 @@ export default function Task({ ...rest }) {
       </div>
       <ModalContainer
         id={rest.task.firebaseKey}
+        formName={'updateTask...'}
+        // user, setTasks
         user={rest.user}
+        setTasks={rest.setTasks}
+        // task data
         day={rest.task.day}
         description={rest.task.description}
         duration={rest.task.duration}
@@ -87,34 +99,21 @@ export default function Task({ ...rest }) {
         reviewNotes={rest.task.reviewNotes}
         subTopicId={rest.task.subTopicId}
         topicId={rest.task.topicId}
-        formName={'updateTask...'}
-        setTasks={rest.setTasks}
-        modalStatus={updateTaskModalStatus}
-        modalToggle={toggleUpdateModal}
+        // tascam data
         tascam={tascam}
         memo1={memo1}
         memo2={memo2}
         memo3={memo3}
+        // modal toggle
+        modalStatus={updateTaskModalStatus}
+        modalToggle={toggleUpdateModal}
       />
     </Container>
   );
 }
 
 Task.propTypes = {
-  task: PropTypes.object,
-  // following two live in task
-  day: PropTypes.string,
-  description: PropTypes.string,
-  duration: PropTypes.number,
-  firebaseKey: PropTypes.string,
-  instrumentId: PropTypes.string,
-  reviewNotes: PropTypes.string,
-  subTopicId: PropTypes.string,
-  topicId: PropTypes.string,
-
   user: PropTypes.any,
   setTasks: PropTypes.func,
-  modalStatus: PropTypes.bool,
-  setModalStatus: PropTypes.func,
-  modalToggle: PropTypes.func,
+  task: PropTypes.object,
 };
