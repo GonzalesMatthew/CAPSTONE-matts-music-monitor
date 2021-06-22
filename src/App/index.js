@@ -22,7 +22,10 @@ function App() {
           uid: authed.uid
         };
         setUser(userInfoObj);
-        getTasks(userInfoObj.uid).then(setTasks);
+        getTasks(userInfoObj.uid).then((resp) => {
+          resp.sort((a, b) => ((a.day < b.day) ? 1 : -1));
+          setTasks(resp);
+        });
       } else if (user || user === null) {
         setUser(false);
       }
