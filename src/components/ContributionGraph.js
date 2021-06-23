@@ -59,11 +59,13 @@ function ContributionGraph({ tasks }) {
             return 'color-scale-1';
           }
           }
-          tooltipDataAttrs={(value) => ({
-            'data-tip': value.date ? `${value.date}, duration: ${value.count} minutes` : '',
-          })}
-          // weekdayLabels={['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']}
+          // tooltipDataAttrs={(value) => {
+          //   return {
+          //     'data-tip': `${value.date}, ${value.count} minutes`
+          //   };
+          // }}
           showWeekdayLabels={true}
+          weekdayLabels={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}
         />
         <ReactTooltip />
       </Paper>
