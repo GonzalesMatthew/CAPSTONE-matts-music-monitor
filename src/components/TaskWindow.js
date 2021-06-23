@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     maxWidth: 500,
     backgroundColor: '#D1CBC1',
-    maxHeight: 400,
+    maxHeight: 380,
     overflow: 'auto',
   },
 }));

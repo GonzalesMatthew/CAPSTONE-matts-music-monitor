@@ -3,20 +3,17 @@ import PropTypes from 'prop-types';
 import UserLanding from '../components/UserLanding';
 import TaskWindow from '../components/TaskWindow';
 import ContributionGraph from '../components/ContributionGraph';
+import { getTasks } from '../helpers/data/TaskData';
 
 export default function UserProfile({
-  user, tasks, setTasks
+  user
 }) {
-  // get start and end date for the CalendarHeatmap;
-  const [start, setStartDate] = useState([]);
-  const [end, setEndDate] = useState([]);
-
+  // get tasks
+  const [tasks, setTasks] = useState([]);
   useEffect(() => {
-    // last element contains earliest date
-    setStartDate(tasks[tasks.length - 1].day);
-    // first element contains most recent date
-    setEndDate(tasks[0].day);
+    getTasks(user.uid).then(setTasks);
   }, []);
+
   return (
     <>
       <UserLanding
@@ -24,15 +21,13 @@ export default function UserProfile({
         tasks={tasks}
         setTasks={setTasks}
       />
+      <ContributionGraph
+        tasks={tasks}
+      />
       <TaskWindow
         user={user}
         tasks={tasks}
         setTasks={setTasks}
-      />
-      <ContributionGraph
-        tasks={tasks}
-        start={start}
-        end={end}
       />
     </>
   );
@@ -40,6 +35,4 @@ export default function UserProfile({
 
 UserProfile.propTypes = {
   user: PropTypes.any,
-  tasks: PropTypes.array,
-  setTasks: PropTypes.func,
 };

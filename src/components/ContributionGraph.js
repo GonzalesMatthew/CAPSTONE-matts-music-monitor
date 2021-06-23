@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#D1CBC1',
   },
 }));
-function ContributionGraph({ tasks, start, end }) {
+function ContributionGraph({ tasks }) {
   const classes = useStyles();
 
   // get values for the CalendarHeatmap:
@@ -38,8 +38,8 @@ function ContributionGraph({ tasks, start, end }) {
       <Paper className={classes.paper} elevation={6}>
         {/* contribution graph code: */}
         <CalendarHeatmap
-          startDate={new Date({ start })}
-          endDate={new Date({ end })}
+          startDate={new Date('2021-01-01')}
+          endDate={new Date()}
           values={values}
           tooltipDataAttrs={(value) => ({
             'data-tip': value.date ? `${value.date}, duration: ${value.count} minutes` : '',
@@ -57,6 +57,4 @@ export default ContributionGraph;
 
 ContributionGraph.propTypes = {
   tasks: PropTypes.array,
-  start: PropTypes.string,
-  end: PropTypes.string,
 };
