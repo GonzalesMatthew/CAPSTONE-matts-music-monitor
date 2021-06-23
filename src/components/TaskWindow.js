@@ -4,7 +4,9 @@ import { makeStyles, Container, Paper } from '@material-ui/core';
 import Task from './Task';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  container: {
+    marginTop: 8,
+    marginBottom: 8,
   },
   large: {
     width: theme.spacing(15),
@@ -15,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     maxWidth: 500,
     backgroundColor: '#D1CBC1',
-    maxHeight: 400,
+    maxHeight: 380,
     overflow: 'auto',
   },
 }));
@@ -26,7 +28,7 @@ export default function TaskWindow({
   const classes = useStyles();
 
   return (
-    <Container>
+    <Container className={classes.container}>
       <Paper className={classes.paper} elevation={6}>
         {rest.tasks.map((task) => (
           <Task

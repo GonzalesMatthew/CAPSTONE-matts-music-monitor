@@ -7,6 +7,10 @@ import ReactTooltip from 'react-tooltip';
 import 'react-calendar-heatmap/dist/styles.css';
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    marginTop: 8,
+    marginBottom: 8,
+  },
   paper: {
     padding: theme.spacing(2),
     margin: 'auto',
@@ -30,7 +34,7 @@ function ContributionGraph({ tasks }) {
   }, [tasks]);
 
   return (
-    <Container>
+    <Container className={classes.container}>
       <Paper className={classes.paper} elevation={6}>
         {/* contribution graph code: */}
         <CalendarHeatmap
