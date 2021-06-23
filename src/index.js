@@ -1,10 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import firebase from 'firebase';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
+import firebaseConfig from './helpers/apiKeys';
 import reportWebVitals from './reportWebVitals';
 import './styles/index.scss';
+
+firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <Router>
