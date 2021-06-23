@@ -41,6 +41,24 @@ function ContributionGraph({ tasks }) {
           startDate={new Date('2021-01-01')}
           endDate={new Date()}
           values={values}
+          classForValue={(value) => {
+            if (!value) {
+              return 'color-empty';
+            }
+            if (value) {
+              if (value.count >= 60) {
+                return 'color-scale-4';
+              }
+              if (value.count >= 30) {
+                return 'color-scale-3';
+              }
+              if (value.count >= 10) {
+                return 'color-scale-2';
+              }
+            }
+            return 'color-scale-1';
+          }
+          }
           tooltipDataAttrs={(value) => ({
             'data-tip': value.date ? `${value.date}, duration: ${value.count} minutes` : '',
           })}
