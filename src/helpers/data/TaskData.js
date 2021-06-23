@@ -5,7 +5,11 @@ const dbUrl = firebaseConfig.databaseURL;
 
 const getTasks = (uid) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/task.json?orderBy="uid"&equalTo="${uid}"`)
-    .then((response) => resolve(Object.values(response.data)))
+    .then((response) => {
+      const array = Object.values(response.data);
+      array.sort((a, b) => ((a.day < b.day) ? 1 : -1));
+      resolve(array);
+    })
     .catch((error) => reject(error));
 });
 
