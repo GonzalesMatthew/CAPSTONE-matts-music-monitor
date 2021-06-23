@@ -12,3 +12,8 @@ body {
   border-bottom-left-radius: 3px;    
   border-bottom-right-radius: 3px;
   }
+
+.scroll {
+  max-height: 400px;
+  overflow-y: scroll;
+}

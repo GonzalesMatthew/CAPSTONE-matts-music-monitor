@@ -15,10 +15,9 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     maxWidth: 500,
     backgroundColor: '#D1CBC1',
-    // color: '#C9D1D9'
+    maxHeight: 400,
+    overflow: 'auto',
   },
-  task: {
-  }
 }));
 
 export default function TaskWindow({
