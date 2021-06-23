@@ -8,7 +8,9 @@ import PropTypes from 'prop-types';
 import ModalContainer from './forms/ModalContainer';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  container: {
+    marginTop: 8,
+    marginBottom: 8,
   },
   large: {
     width: theme.spacing(15),
@@ -41,7 +43,7 @@ export default function UserLanding({
   const modalToggle = () => setModalStatus(!modalStatus);
 
   return (
-    <Container>
+    <Container className={classes.container}>
       <Paper className={classes.paper} elevation={6}>
         <div className='d-flex flex-row'>
           <div>
