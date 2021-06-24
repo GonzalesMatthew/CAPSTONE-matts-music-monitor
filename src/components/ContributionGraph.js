@@ -1,4 +1,3 @@
-// import React from 'react';
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, Container, Paper } from '@material-ui/core';
@@ -59,11 +58,9 @@ function ContributionGraph({ tasks }) {
             return 'color-scale-1';
           }
           }
-          // tooltipDataAttrs={(value) => {
-          //   return {
-          //     'data-tip': `${value.date}, ${value.count} minutes`
-          //   };
-          // }}
+          tooltipDataAttrs={(value) => ({
+            'data-tip': `${value.date}, ${value.count} minutes`
+          })}
           showWeekdayLabels={true}
           weekdayLabels={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}
         />
