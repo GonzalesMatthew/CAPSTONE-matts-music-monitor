@@ -21,12 +21,11 @@ This app lets you monitor your music training over time. Choose which day, durat
     - Choose date
     - Choose duration
     - Choose instrument
-    - Choose key and scales practiced
     - Leave a description of your training
     - Leave additional review notes
     - Log Tascam track, along with noteworthy memos and timestamps.
-  - Log of past submissions that you can view, edit, or delete.
   - A contribution graph showing your frequency and intesity of study days.
+  - Log of past submissions that you can view, edit, or delete.
 ### Screenshots of my project
 ![App Screenshot](https://user-images.githubusercontent.com/16343050/123368207-fd58a380-d540-11eb-9021-3d2c23b88949.png)
 ### List of contributors and links to their GH profiles
