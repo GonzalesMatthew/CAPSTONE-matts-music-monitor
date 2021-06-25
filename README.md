@@ -11,7 +11,7 @@ This app lets you monitor your music training over time. Choose which day, durat
 ### Link to my flow chart
   [Flow Chart](https://docs.google.com/presentation/d/16cxnh2h54LLz4B3zN4nnbWFl6mPgwnGqWR94YYEu9jc/edit?usp=sharing)
 ### Link to the deployed project
-  [Deployed Project]()
+  [Deployed Project](https://mg-music-monitor.netlify.app/)
 ### Description of the user
   For musicians looking for a virtual training log
 ### List of features   
@@ -35,5 +35,3 @@ This app lets you monitor your music training over time. Choose which day, durat
 [App-Walkthrough Video]()
 ### Link to my personal bio site
 [Personal Bio Site](https://www.matthewggonzales.com)
-### Steps to Deploy
-- [Steps to deploy](https://github.com/nss-nightclass-projects/REACT-Deployment-Netlify)
