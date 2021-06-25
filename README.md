@@ -27,7 +27,9 @@ This app lets you monitor your music training over time. Choose which day, durat
   - A contribution graph showing your frequency and intesity of study days.
   - Log of past submissions that you can view, edit, or delete.
 ### Screenshots of my project
-![App Screenshot](https://user-images.githubusercontent.com/16343050/123368207-fd58a380-d540-11eb-9021-3d2c23b88949.png)
+![LandingPage](https://user-images.githubusercontent.com/16343050/123371649-c934b100-d547-11eb-9364-bb2d179be1fa.png)
+
+![UserProfile](https://user-images.githubusercontent.com/16343050/123368207-fd58a380-d540-11eb-9021-3d2c23b88949.png)
 ### List of contributors and links to their GH profiles
 @GonzalesMatthew
 ### Link to Loom video walkthrough of my app
