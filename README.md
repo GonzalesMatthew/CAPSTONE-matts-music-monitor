@@ -1,4 +1,6 @@
 # Matt's Music Monitor App
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fed74284-913a-4379-8cf5-be2d765641c3/deploy-status)](https://app.netlify.com/sites/mg-music-monitor/deploys)
+
 This app lets you monitor your music training over time. Choose which day, duration, instrument, key/scale used, and leave a desription and review notes of your training session for review, and more.
 ### Link to Initial Project Planning (Before Coding)
   [Planning Explained](https://www.loom.com/share/58875c61c2744d53946edd1a3c3c22c8)
