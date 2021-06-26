@@ -1,26 +1,16 @@
 import React from 'react';
-// import { makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import {
   Modal, ModalBody, ModalHeader,
-  // Button, ModalFooter
 } from 'reactstrap';
 import TaskForm from './TaskForm';
 
-// const useStyles = makeStyles(() => ({
-//   modal: {
-//     backgroundColor: '#343A40',
-//     borderRadius: 50,
-//   }
-// }));
-
 const ModalContainer = ({
-  id, user, formName, setTasks, modalStatus, modalToggle, tascam, memo1, memo2, memo3, ...rest
+  id, formName, user, setTasks, modalStatus, modalToggle, tascam, memo1, memo2, memo3, ...rest
 }) => (
   // const classes = useStyles();
     <Modal
       id={id}
-      // dialogClassName={classes.modal}
       size='md'
       isOpen={modalStatus} toggle={modalToggle}
     >
@@ -30,7 +20,7 @@ const ModalContainer = ({
           user={user}
           setTasks={setTasks}
           modalToggle={modalToggle}
-          // task data
+          // task data (...rest)
           day={rest.day}
           description={rest.description}
           duration={rest.duration}

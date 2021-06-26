@@ -90,6 +90,9 @@ export default function Task({ ...rest }) {
         // user, setTasks
         user={rest.user}
         setTasks={rest.setTasks}
+        // modal toggle
+        modalStatus={updateTaskModalStatus}
+        modalToggle={toggleUpdateModal}
         // task data
         day={rest.task.day}
         description={rest.task.description}
@@ -104,9 +107,6 @@ export default function Task({ ...rest }) {
         memo1={memo1}
         memo2={memo2}
         memo3={memo3}
-        // modal toggle
-        modalStatus={updateTaskModalStatus}
-        modalToggle={toggleUpdateModal}
       />
     </Container>
   );
@@ -114,6 +114,6 @@ export default function Task({ ...rest }) {
 
 Task.propTypes = {
   user: PropTypes.any,
-  setTasks: PropTypes.func,
   task: PropTypes.object,
+  setTasks: PropTypes.func,
 };

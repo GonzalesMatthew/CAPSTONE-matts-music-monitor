@@ -26,12 +26,12 @@ const TaskForm = ({
   reviewNotes,
   subTopicId,
   topicId,
+  // tascam fields:
+  tascam,
   // memo fields:
   memo1,
   memo2,
   memo3,
-  // tascam fields:
-  tascam,
 }) => {
   // define task object
   const [taskObj, setTaskObj] = useState({
