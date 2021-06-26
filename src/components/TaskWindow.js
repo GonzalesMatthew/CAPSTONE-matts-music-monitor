@@ -23,19 +23,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TaskWindow({
-  ...rest
+  user, tasks, setTasks
 }) {
   const classes = useStyles();
 
   return (
     <Container className={classes.container}>
       <Paper className={classes.paper} elevation={6}>
-        {rest.tasks.map((task) => (
+        {tasks.map((task) => (
           <Task
             key={task.firebaseKey}
             task={task}
-            user={rest.user}
-            setTasks={rest.setTasks}
+            user={user}
+            setTasks={setTasks}
           />
         ))}
       </Paper>

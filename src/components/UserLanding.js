@@ -67,9 +67,11 @@ export default function UserLanding({
               {/* my modal component is here: ModalContainer */}
               <ModalContainer
                 id='addModal'
-                user={user}
                 formName={'addTask...'}
+                // user, setTasks
+                user={user}
                 setTasks={setTasks}
+                // modal toggle
                 modalStatus={modalStatus}
                 modalToggle={modalToggle}
               />
@@ -82,7 +84,7 @@ export default function UserLanding({
 }
 
 UserLanding.propTypes = {
-  user: PropTypes.any.isRequired,
+  user: PropTypes.any,
   tasks: PropTypes.array,
   setTasks: PropTypes.func,
 };
