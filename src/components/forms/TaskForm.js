@@ -130,8 +130,10 @@ const TaskForm = ({
     e.preventDefault();
     if (taskObj.firebaseKey) {
       updateTask(taskObj, memo1Obj, memo2Obj, memo3Obj, tascamObj).then(setTasks);
+      modalToggle();
     } else {
       addTascam(taskObj, memo1Obj, memo2Obj, memo3Obj, tascamObj.track).then(setTasks);
+      modalToggle();
     }
   };
 
