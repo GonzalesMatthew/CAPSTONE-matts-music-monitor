@@ -35,6 +35,6 @@ This app lets you monitor your music training over time. Choose which day, durat
 ### List of contributors and links to their GH profiles
 @GonzalesMatthew
 ### Link to Loom video walkthrough of my app
-[App-Walkthrough Video]()
+[App-Walkthrough Video](https://www.loom.com/share/fb9207069d5141a59e948b668d734063)
 ### Link to my personal bio site
 [Personal Bio Site](https://www.matthewggonzales.com)
